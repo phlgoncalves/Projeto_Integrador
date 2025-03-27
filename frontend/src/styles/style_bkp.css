@@ -109,16 +109,6 @@ a:hover {
     background-position: center;
 }
 
-.container-IMGbaner{
-    display: flex;
-    justify-content: center;
-}
-
-.baner-home{
-    width: 85%;
-    height: 50%;
-}
-
 .container-boas {
     display: flex;
     flex-direction: column;
@@ -153,16 +143,9 @@ a:hover {
     font-size: 20px;
 }
 
-.btn-boasVindas{
-    height: 200px;
-    position: absolute;
-    top: 170px;
-    right: 100px;
-    
-}
-
 /*CARDS HOME*/
 .cards {
+    /* background-color: #355796; */
     background: rgb(2,0,36);
     background: linear-gradient(4deg, rgba(2,0,36,1) 20%, rgba(24,78,119,1) 100%, rgba(0,212,255,1) 100%);
     width: 310px;
@@ -170,15 +153,11 @@ a:hover {
     border-radius: 25px;
     text-align: center;
     box-shadow: 10px 10px 15px rgb(85, 74, 74);
+    /* border: 1px solid white; */
     padding: 10px;
     border-right: 2px solid rgb(49, 43, 43);
     border-bottom: 1px solid black;
 
-}
-
-.cards:hover{
-    width: 330px;
-    height: 400px;
 }
 
 .container-cards {
@@ -186,7 +165,8 @@ a:hover {
     margin-top: 150px;
     width: 85%;
     gap: 5px;
-    height: 600px;
+    /* background-color: black; */
+    height: 700px;
     color: white;
 }
 
@@ -201,35 +181,6 @@ a:hover {
 .img-cards {
     width: 150px;
     height: 100px;
-}
-
-.container-btnDenunciaHome{
-    background-color: white;
-    width: 85%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-    flex-direction: row;
-    gap: 60px;
-}
-
-.btn-denuncia{
-    background-color: red;
-    color: white;
-    width:150px;
-    height: 50px;
-    border-radius: 15px;   
-    border: none; 
-    font-size: 20px; 
-}
-
-.btn-denuncia:hover{
-    width:155px;
-    height: 55px;
-    font-size: 22px;
 }
 
 /* --------------REGISTRO-------------- */
@@ -310,15 +261,15 @@ a:hover {
 }
 
 .authentication {
-    background-color: #216396;
+    background-color: #1E6091;
     width: 20rem;
     height: 25rem;
     display: flex;
     align-items: center;
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
     flex-direction: column;
     padding-top: 4rem;
-    border-radius: 40px;
+    border-radius: 50px;
     color: #fff;
 }
 
@@ -369,20 +320,11 @@ a:hover {
     position: relative;
     top: 45px;
     left: 25px;
-    background-color: #fffefe;
-    color: rgb(5, 0, 0);
+    background-color: #D9ED92;
     width: 2rem;
     height: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.close-modal:hover{
-    width: 33px;
-    height: 33px;
-    background-color: #81b7ee;
-    color: rgb(14, 1, 1);
-    border: none;
-}
 .login-button {
     background-color: transparent;
     text-decoration: none;

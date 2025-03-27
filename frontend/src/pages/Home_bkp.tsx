@@ -2,20 +2,8 @@ import React from 'react';
 import Card from "../components/Cards"
 import Header from "../components/Header"
 import "../styles/style.css"
-import { useNavigate } from 'react-router-dom';
-
-
-    
 
 const Home: React.FC = () => {
-
-    const navigate = useNavigate();
-  
-    // Navega para a página de destino
-    const handleDenuncia = () => {
-      navigate('src\pages\Denucias.tsx');
-    }
-
     return (
         <>
             <Header />
@@ -33,10 +21,6 @@ const Home: React.FC = () => {
                         </div>
                             <br /><br /><br />
                         <div className='numero-denuncias'>Bauru registrou 2.043 casos confirmados em 2025!</div>
-                    </div>
-
-                    <div className='btn-boasVindas'>
-                        <button className='btn-denuncia' onClick={handleDenuncia}>Denuncie já!</button>
                     </div>
 
                     <div className="container-cards">
@@ -65,15 +49,6 @@ const Home: React.FC = () => {
                             descricao="Não há tratamento específico para a dengue. O tratamento é focado em aliviar os sintomas, como o uso de analgésicos e hidratação adequada. Em casos graves, a pessoa pode necessitar de internação hospitalar."
                         />
                     </div>
-
-                    <div className='container-btnDenunciaHome'>
-                        <p>"Silenciar é colaborar com a dengue. <b>Denuncie agora!</b> </p>
-                        <button className='btn-denuncia' onClick={handleDenuncia}>Denuncie já!</button>
-                    </div>
-
-                    <div className='container-IMGbaner'>
-                        <img className='baner-home' src="src\assets\Banner_Blog_dengue.png" />
-                    </div>
                 </div>
                 {/* <Footer /> */}
             </div>
@@ -81,4 +56,5 @@ const Home: React.FC = () => {
         </>
     )
 }
+
 export default Home
