@@ -1,27 +1,58 @@
-
 import React, { useState } from "react"
 
 function RegistrationForm() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
   const [celular, setCelular] = useState('');
   const [senha, setSenha] = useState('');
-  const [confirSenha, setConfirSenha] = useState('')
+  const [confirSenha, setConfirSenha] = useState('');
 
-  function handleSubmit() {
-    fetch('http://192.168.1.3:3000/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        nome: nome,
-        email: 'email@email.com',
-        celular: '1234567890',
-        senha: 'senha',
-        confirSenha: 'confirSenha'
-      })
-    })
+  async function handleSubmit() {
+    try {
+      let response = await fetch('http://localhost:3000/usuario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome,
+          email,
+          cpf,
+          celular,
+          senha,
+          confirSenha
+        })
+      });
+
+      if (response.ok) {
+        alert("Cadastro realizado com sucesso");
+        window.location.href = '/';
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert("Erro ao cadastrar");
+    }
+  }
+
+  // Função para formatar o CPF
+  const formatarCPF = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    let valor = event.target.value.replace(/\D/g, '');
+    valor = valor.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+    setCpf(valor);
+  }
+
+  // Função para formatar o celular
+  const formatarCelular = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    let valor = event.target.value.replace(/\D/g, '');
+    if (valor.length <= 2) {
+      valor = valor.replace(/^(\d{2})/, '($1) ');
+    } else if (valor.length <= 7) {
+      valor = valor.replace(/^(\d{2})(\d{5})/, '($1) $2-');
+    } else {
+      valor = valor.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    }
+    setCelular(valor);
   }
 
   return (
@@ -37,53 +68,63 @@ function RegistrationForm() {
       />
 
       <label htmlFor="email">Email</label>
-      <input type="email" name="email" id="email" placeholder="Digite seu e-mail" />
+      <input 
+        type="email" 
+        name="email" 
+        id="email" 
+        placeholder="Digite seu e-mail"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
       <label htmlFor="cpf">CPF</label>
-      <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF. Apenas Números" maxLength={14} onInput={formatarCPF} />
+      <input 
+        type="text" 
+        name="cpf" 
+        id="cpf" 
+        placeholder="Digite o CPF. Apenas Números" 
+        maxLength={14} 
+        value={cpf}
+        onChange={formatarCPF}
+      />
+
       <label htmlFor="celular">Celular</label>
-      <input type="tel" name="celular" id="celular" placeholder="Informe seu numero de celular" maxLength={15} onChange={formatarCelular}/>
+      <input 
+        type="tel" 
+        name="celular" 
+        id="celular" 
+        placeholder="Informe seu numero de celular" 
+        maxLength={15} 
+        value={celular}
+        onChange={formatarCelular}
+      />
+
       <label htmlFor="senha">Senha</label>
-      <input type="password" name="senha" id="senha" placeholder="Crie uma senha" />
+      <input 
+        type="password" 
+        name="senha" 
+        id="senha" 
+        placeholder="Crie uma senha"
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
+      />
+
       <label htmlFor="confirSenha">Confirme sua senha</label>
-      <input type="password" name="confirSenha" id="confirSenha" placeholder="Confirme a senha" />
+      <input 
+        type="password" 
+        name="confirSenha" 
+        id="confirSenha" 
+        placeholder="Confirme a senha"
+        value={confirSenha}
+        onChange={(e) => setConfirSenha(e.target.value)}
+      />
+
       <button onClick={handleSubmit}>Criar Conta</button>
     </div>
-  )
+  );
 }
 
-export default RegistrationForm
-
-// Função para formatar o CPF
-const formatarCPF = (event: React.ChangeEvent<HTMLInputElement>): void => {
-  const campo = event.target as HTMLInputElement; // Acessa o campo de input
-  let valor = campo.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-
-  // Aplica a máscara no CPF (XXX.XXX.XXX-XX)
-  valor = valor.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
-  
-  campo.value = valor; // Atualiza o valor do campo com a máscara aplicada
-}
-
-// Função para formatar o celular no formato (XX) XXXXX-XXXX
-const formatarCelular = (event: React.ChangeEvent<HTMLInputElement>): void => {
-  const campo = event.target as HTMLInputElement; // Acessa o campo de input
-  let valor = campo.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-
-  // Aplica a máscara no celular (XX) XXXXX-XXXX
-  if (valor.length <= 2) {
-    valor = valor.replace(/^(\d{2})/, '($1) '); // Formata o código de área
-  } else if (valor.length <= 7) {
-    valor = valor.replace(/^(\d{2})(\d{5})/, '($1) $2-'); // Formata a primeira parte do número
-  } else {
-    valor = valor.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // Formata a segunda parte do número
-  }
-
-  campo.value = valor; // Atualiza o valor do campo com a máscara aplicada
-}
-
-
-
-
+export default RegistrationForm;
 
 {/* <script>
   function formatarCPF(campo) {
