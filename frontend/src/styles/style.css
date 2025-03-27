@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&family=Calistoga&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nanum+Brush+Script&family=Raleway:ital,wght@0,100..900;1,100..900&family=Road+Rage&family=Sedan:ital@0;1&display=swap');
+
+
+/* RESETS
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+/* BODY */
+
+body {
+    background-color: #425863;
+    background-position: center 99%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed
+}
+
+
+/* HEADER*/
+.container-header {
+    width: 100%;
+    height: 65px;
+    background-color: #184E77;
+    display: flex;
+    color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.menu-header {
+    /* flex: 5; */
+    justify-content: space-around;
+    display: flex;
+    width: 100%;
+    margin-right: 4rem;
+}
+
+.logo-header {
+    /* flex: 1; */
+    padding-left: 4.5rem;
+}
+
+.logo-img {
+    width: 180px;
+    height: auto;
+    margin-top: 4px;
+}
+
+/* MENU */
+.cotainer-menu {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 95%;
+    gap: 40px;
+    padding-right: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+a:hover {
+    color: #D9ED92;
+    transition: 1s;
+}
+
+
+/* ------------------------PAGINAS --------------------*/
+
+/* CONTAINER PRINCIPAL */
+.container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 83vh;
+    flex-direction: column;
+    color: black;
+}
+
+/* --------------HOME--------------*/
+.container-home {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boas-vindas {
+    /* background-image: url('/src/assets/mosquito-home.png'); */
+    background-image: url('/src/assets/mosquito.png');
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 30% auto;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+    display: flex;
+    flex-direction: column;
+
+    /* EFEITO PARALAX */
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.container-boas {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin-top: 80px;
+}
+
+.titulo>h1 {
+    color: #fff;
+    font-family: cursive;
+}
+
+.titulo>h2 {
+    color: #fff;
+}
+
+.explicativo {
+    color: #fff;
+    width: 30rem;
+    text-align: justify;
+    font-family: serif;
+}
+
+.explicativo>p {
+    font-family: "Akaya Kanadaka", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.numero-denuncias{
+    color: #D9ED92;
+    font-size: 20px;
+}
+
+/*CARDS HOME*/
+.cards {
+    /* background-color: #355796; */
+    background: rgb(2,0,36);
+    background: linear-gradient(4deg, rgba(2,0,36,1) 20%, rgba(24,78,119,1) 100%, rgba(0,212,255,1) 100%);
+    width: 310px;
+    height: 380px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 10px 10px 15px rgb(85, 74, 74);
+    /* border: 1px solid white; */
+    padding: 10px;
+    border-right: 2px solid rgb(49, 43, 43);
+    border-bottom: 1px solid black;
+
+}
+
+.container-cards {
+    display: flex;
+    margin-top: 150px;
+    width: 85%;
+    gap: 5px;
+    /* background-color: black; */
+    height: 700px;
+    color: white;
+}
+
+.botao-cards {
+    background-color: rgb(7, 7, 7);
+    color: white;
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+}
+
+.img-cards {
+    width: 150px;
+    height: 100px;
+}
+
+/* --------------REGISTRO-------------- */
+.botao-registro {
+    color: #fff;
+    margin-top: 20px;
+}
+
+.botao-registro:hover {
+    color: #34A0A4;
+    transition: 1s;
+}
+
+.registro {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    padding: 1.25rem;
+    background-color: #F7F7F7;
+    opacity: 75%;
+    height: 28.12rem;
+    width: 26.25rem;
+    align-self: center;
+    border-radius: 50px;
+}
+
+.registro>input {
+    margin-bottom: 1rem;
+    border-radius: 25px;
+    background-color: #d1dee8;
+    width: 100%;
+    height: 2rem;
+    padding-left: 0.5rem;
+}
+
+/* ESTILO ESPECIFICO PARA O CAMPO NOME */
+.registro>input[name="nome"] {
+    background-color: #ffffff;
+    border: 2px solid #184E77;
+    font-size: 1rem;
+    color: #184E77;
+}
+
+.registro>input[name="nome"]:focus {
+    outline: none;
+    border-color: #D9ED92;
+    box-shadow: 0 0 5px rgba(217, 237, 146, 0.5);
+}
+
+.registro>label {
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+#btn-registro {
+    width: 6rem;
+    align-self: center;
+    cursor: pointer;
+    background-color: #d1dee8;
+    text-decoration: none;
+    border-radius: 25px;
+
+}
+
+#btn-registro:hover {
+    background-color: #63b2ef;
+    transition: 1s;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+
+/* --------------LOGIN-------------- */
+.div-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.authentication {
+    background-color: #1E6091;
+    width: 20rem;
+    height: 25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-top: 4rem;
+    border-radius: 50px;
+    color: #fff;
+}
+
+.authentication>input {
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    width: 13rem;
+    height: 1.5rem;
+    margin-top: 0.5rem;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-login {
+    border-radius: 7px;
+    height: 1.5rem;
+    width: 4rem;
+    margin-bottom: 11.5px;
+    background-color: #D9ED92;
+}
+
+.authentication>button:hover {
+    color: grey;
+    transition: 1s;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    width: 20rem;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 2rem;
+}
+
+.close-modal {
+    border-radius: 50px;
+    position: relative;
+    top: 45px;
+    left: 25px;
+    background-color: #D9ED92;
+    width: 2rem;
+    height: 2rem;
+}
+
+.login-button {
+    background-color: transparent;
+    text-decoration: none;
+    color: aliceblue;
+    border: none;
+    cursor: pointer;
+}
+
+
+.login-button:hover {
+    color: #D9ED92;
+    transition: 1s;
+}
+
+
+
+
+/* --------------Footer-------------- */
+
+.container-footer {
+    width: 100%;
+    height: 50px;
+    background-color: #184E77;
+    color: #D9ED92;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
