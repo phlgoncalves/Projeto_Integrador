@@ -3,6 +3,7 @@ import Card from "../components/Cards"
 import Header from "../components/Header"
 import "../styles/style.css"
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 
     
@@ -13,7 +14,7 @@ const Home: React.FC = () => {
   
     // Navega para a página de destino
     const handleDenuncia = () => {
-      navigate('src\pages\Denucias.tsx');
+      navigate('denuncia');
     }
 
     return (
@@ -75,7 +76,7 @@ const Home: React.FC = () => {
                         <img className='baner-home' src="src\assets\Banner_Blog_dengue.png" />
                     </div>
                 </div>
-                {/* <Footer /> */}
+                <Footer />
             </div>
 
         </>
