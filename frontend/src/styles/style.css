@@ -11,7 +11,8 @@
 /* BODY */
 
 body {
-    background-color: #425863;
+    /* background-color: #425863; */
+    background-color: rgb(0, 0, 0);
     background-position: center 99%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -93,7 +94,7 @@ a:hover {
 
 .boas-vindas {
     /* background-image: url('/src/assets/mosquito-home.png'); */
-    background-image: url('/src/assets/mosquito.png');
+    /* background-image: url('/src/assets/mosquito.png'); */
     width: 100%;
     background-repeat: no-repeat;
     background-size: 30% auto;
@@ -179,6 +180,7 @@ a:hover {
 .cards:hover{
     width: 330px;
     height: 400px;
+    cursor: pointer;
 }
 
 .container-cards {
