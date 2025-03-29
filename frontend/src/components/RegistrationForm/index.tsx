@@ -58,62 +58,65 @@ function RegistrationForm() {
   return (
     <div className="registro">
       <label htmlFor="nome">Nome</label>
-      <input 
-        type="text" 
-        name="nome" 
-        id="nome" 
+      <input
+        type="text"
+        name="nome"
+        id="nome"
         placeholder="Digite seu nome completo"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
       />
 
+      <label htmlFor="dataNasc">Data de Nascimento</label>
+      <input type="date" name="dataNasc" id="dataNasc" />
+
       <label htmlFor="email">Email</label>
-      <input 
-        type="email" 
-        name="email" 
-        id="email" 
+      <input
+        type="email"
+        name="email"
+        id="email"
         placeholder="Digite seu e-mail"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
 
       <label htmlFor="cpf">CPF</label>
-      <input 
-        type="text" 
-        name="cpf" 
-        id="cpf" 
-        placeholder="Digite o CPF. Apenas Números" 
-        maxLength={14} 
+      <input
+        type="text"
+        name="cpf"
+        id="cpf"
+        placeholder="Digite o CPF. Apenas Números"
+        maxLength={14}
         value={cpf}
         onChange={formatarCPF}
       />
 
       <label htmlFor="celular">Celular</label>
-      <input 
-        type="tel" 
-        name="celular" 
-        id="celular" 
-        placeholder="Informe seu numero de celular" 
-        maxLength={15} 
+      <input
+        type="tel"
+        name="celular"
+        id="celular"
+        placeholder="Informe seu numero de celular"
+        maxLength={15}
         value={celular}
         onChange={formatarCelular}
       />
 
       <label htmlFor="senha">Senha</label>
-      <input 
-        type="password" 
-        name="senha" 
-        id="senha" 
+      <input
+        type="password"
+        name="senha"
+        id="senha"
         placeholder="Crie uma senha"
         value={senha}
         onChange={(e) => setSenha(e.target.value)}
       />
 
       <label htmlFor="confirSenha">Confirme sua senha</label>
-      <input 
-        type="password" 
-        name="confirSenha" 
-        id="confirSenha" 
+      <input
+        type="password"
+        name="confirSenha"
+        id="confirSenha"
         placeholder="Confirme a senha"
         value={confirSenha}
         onChange={(e) => setConfirSenha(e.target.value)}
@@ -134,4 +137,3 @@ export default RegistrationForm;
   }
 </script> */}
 
- 
