@@ -7,33 +7,9 @@ function RegistrationForm() {
   const [celular, setCelular] = useState('');
   const [senha, setSenha] = useState('');
   const [confirSenha, setConfirSenha] = useState('');
+  const [error, setError] = useState('');
+  const [senhaError, setSenhaError] = useState('');
 
-  async function handleSubmit() {
-    try {
-      let response = await fetch('http://localhost:3000/usuario', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nome,
-          email,
-          cpf,
-          celular,
-          senha,
-          confirSenha
-        })
-      });
-
-      if (response.ok) {
-        alert("Cadastro realizado com sucesso");
-        window.location.href = '/';
-      }
-    } catch (error) {
-      console.error('Erro:', error);
-      alert("Erro ao cadastrar");
-    }
-  }
 
   // Função para formatar o CPF
   const formatarCPF = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -54,6 +30,59 @@ function RegistrationForm() {
     }
     setCelular(valor);
   }
+
+  // Função para validar o email
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (senha: string, confirSenha: string): boolean => {
+    return senha === confirSenha;
+  };
+
+  async function handleSubmit() {
+    // Validando e-mail
+    if (!validateEmail(email)) {
+      setError("Por favor, insira um e-mail válido.");
+      return;
+    }
+
+    // Validando senha
+    if (!validatePassword(senha, confirSenha)) {
+      setSenhaError("As senhas não coincidem.");
+      return;
+    }
+
+    // Enviando os dados para o servidor
+    try {
+      let response = await fetch('http://localhost:3000/usuario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome,
+          email,
+          cpf,
+          celular,
+          senha,
+          confirSenha
+        })
+      });
+
+      if (response.ok) {
+        alert("Cadastro realizado com sucesso");
+        window.location.href = '/';
+      } else {
+        alert("Erro ao cadastrar");
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert("Erro ao cadastrar");
+    }
+  }
+
 
   return (
     <div className="registro">
@@ -79,6 +108,7 @@ function RegistrationForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <label htmlFor="cpf">CPF</label>
       <input
@@ -121,6 +151,7 @@ function RegistrationForm() {
         value={confirSenha}
         onChange={(e) => setConfirSenha(e.target.value)}
       />
+      {senhaError && <p style={{ color: 'red' }}>{senhaError}</p>}
 
       <button onClick={handleSubmit}>Criar Conta</button>
     </div>
@@ -129,11 +160,4 @@ function RegistrationForm() {
 
 export default RegistrationForm;
 
-{/* <script>
-  function formatarCPF(campo) {
-    var valor = campo.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-    valor = valor.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4'); // Adiciona a máscara
-    campo.value = valor; // Atualiza o campo com o valor formatado
-  }
-</script> */}
 
