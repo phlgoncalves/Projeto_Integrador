@@ -453,18 +453,35 @@ a:hover {
 .container-denuncias{
     background-color: #F7F7F7;
     display: flex;
+    flex-direction: column;
     height: 700px;
    margin-right: 50px;
    margin-left: 50px;
+   gap: 30px;
   }
 
   .formulario-denuncia{
-    border: 1px solid black;
-    height: 400px;
+    background-color: #45a049;
+    height: 700px;
+    justify-content: center;
+    
   }
 
+  input.escolha-arquivo{
+    border: black 2px dashed ;
+    height: 100px;
+    width: 500px;
+   
+  }
 
+  label.descricao{
+   border: 1px solid;
+  }
 
+  .denuncia-end{
+    background-color: #f2f6f8;
+    border: 1px solid;
+  }
   
 /* --------------FOOTER-------------- */
 .container-footer {
@@ -475,6 +492,6 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 2px solid black;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
