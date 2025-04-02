@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import {
   Body,
   Controller,
@@ -114,7 +112,7 @@ export class UsuarioController {
 
       await this.classeUsuarioService.atualizaUsuario(id, dadosEndereco)
     }
-    
+
     const usuarioAtualizado = this.classeUsuarioService.atualizaUsuario(
       id,
       novosDados,
