@@ -9,6 +9,23 @@ function Denuncias() {
         <div>
           <h1>Página de Denuncias</h1>
         </div>
+        <div className="formulario-denuncia">
+        <label htmlFor="foto"></label>
+        <input
+                    type="file"
+                    id="foto"
+                    name="foto"
+                    accept="image/*"
+                    // onChange={handleFileChange}
+                    required
+                />
+                <br /><br />
+                <label>Descriçao
+                  <br />
+                <textarea name="sdwvwv" id="" cols="30" rows="8"></textarea></label>
+                <br />
+                <button type="submit">Enviar</button>
+        </div>
       </div>
       <Footer />
     </>
