@@ -38,6 +38,22 @@ export class criaUsuarioDTO {
   email: string;
 
   @IsString()
+  @MinLength(8, { message: 'CEP deve conter pelo menos 8 digitos' })
+  @ApiProperty({
+    example: '17014000',
+    description: 'Deve ser enviado um CEP valido'
+  })
+  cep: string;
+
+  @IsString()
+  @ApiProperty({
+    example: 'Apartamento 123',
+    description: 'Deve ser informado o complemento do endereço'
+  })
+  complemento: string;
+
+
+  @IsString()
   @ApiProperty({
     example: '981872022',
     description: 'Esse campo identifica o telefone do usuário',

@@ -9,6 +9,9 @@ export class UsuarioEntity {
   nome: string;
   dataNasc: Date;
   email: string;
+  endereco: string;
+  cep: string;
+  complemento: string;
   telefone: string;
   senha: string;
   constructor(
@@ -16,6 +19,9 @@ export class UsuarioEntity {
     nome: string,
     dataNasc: Date,
     email: string,
+    endereco: string,
+    cep: string,
+    complemento: string,
     telefone: string,
     senha: string,
   ) {
@@ -25,6 +31,9 @@ export class UsuarioEntity {
     this.nome = nome;
     this.dataNasc = dataNasc;
     this.email = email;
+    this.endereco = endereco;
+    this.cep = cep;
+    this.complemento = complemento;
     this.telefone = telefone;
     this.senha = bcrypt.hashSync(senha, saltOrRounds);
   }

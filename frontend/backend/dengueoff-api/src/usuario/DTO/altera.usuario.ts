@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import {
   IsEmail,
   IsInt,
@@ -40,6 +39,21 @@ export class alteraUsuarioDTO {
       'Esse campo irá ser login do usuário, deve ser um email válido e único',
   })
   email: string;
+
+  @IsString()
+  @MinLength(8, { message: 'CEP deve conter pelo menos 8 digitos' })
+  @ApiPropertyOptional({
+    example: '17014000',
+    description: 'Deve ser enviado um CEP valido'
+  })
+  cep: string;
+
+  @IsString()
+  @ApiPropertyOptional({
+    example: 'Apartamento 123',
+    description: 'Deve ser informado o complemento do endereço'
+  })
+  complemento: string;
 
   @IsString()
   @IsOptional()

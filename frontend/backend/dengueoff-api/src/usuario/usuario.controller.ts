@@ -19,11 +19,13 @@ import { alteraUsuarioDTO } from './DTO/altera.usuario';
 import { LoginUsuarioDto } from './DTO/loginUsuario.dto';
 
 import { ApiBadRequestResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { HttpService } from '@nestjs/axios';
+import { lastValueFrom, map } from 'rxjs';
 
 @ApiTags('usuario')
 @Controller('/usuarios')
 export class UsuarioController {
-  constructor(private classeUsuarioService: UsuarioService) {}
+  constructor(private classeUsuarioService: UsuarioService, private httpService: HttpService) { }
 
   @Post()
   @ApiResponse({
@@ -31,12 +33,32 @@ export class UsuarioController {
     description: 'Retorna que houve sucesso ao criar um usuário',
   })
   @ApiBadRequestResponse({ description: 'Retorna que algum dado está errado' })
-  criaUsuario(@Body() dadosUsuario: criaUsuarioDTO) {
+  async criaUsuario(@Body() dadosUsuario: criaUsuarioDTO) {
+    var msgError = ''
+    try {
+      var retornoCep = await lastValueFrom(this.httpService
+        .get(`https://viacep.com.br/ws/${dadosUsuario.cep}/json/`)
+        .pipe(
+          map((response) => response.data)
+        ))
+      if (retornoCep.error == 'true') {
+        throw new Error('CEP não encontrado')
+      }
+    } catch (error) {
+      msgError = 'Erro ao consultar o CEP, informa um CEP valido'
+      return {
+        message: msgError,
+        status: 'Erro no cadastro do usuário'
+      }
+    }
     const novoUsuario = new UsuarioEntity(
       uuid(),
       dadosUsuario.nome,
       dadosUsuario.dataNasc,
       dadosUsuario.email,
+      dadosUsuario.cep,
+      retornoCep.logradouro ? retornoCep.logradouro : '',
+      retornoCep.localidade,
       dadosUsuario.telefone,
       dadosUsuario.senha,
     );
@@ -64,10 +86,35 @@ export class UsuarioController {
   }
 
   @Put('/:id')
-  atualizaUsuario(
+  async atualizaUsuario(
     @Param('id') id: string,
     @Body() novosDados: alteraUsuarioDTO,
   ) {
+    var msgError = ''
+    if (novosDados.cep) {
+      try {
+        var retornoCep = await lastValueFrom(this.httpService
+          .get(`https://viacep.com.br/ws/${novosDados.cep}/json/`)
+          .pipe(
+            map((response) => response.data)
+          ))
+        if (retornoCep.erro) {
+          retornoCep = null
+          throw new Error('CEP não encontrado')
+        }
+      } catch (error) {
+        msgError = ` | Erro ao buscar CEP - ${error.message}`
+      }
+
+      var dadosEndereco = {
+        endereco: retornoCep ? retornoCep.logradouro : '',
+        cidade: retornoCep ? retornoCep.localidade : '',
+        cep: novosDados.cep
+      }
+
+      await this.classeUsuarioService.atualizaUsuario(id, dadosEndereco)
+    }
+    
     const usuarioAtualizado = this.classeUsuarioService.atualizaUsuario(
       id,
       novosDados,
