@@ -23,9 +23,9 @@ export class criaUsuarioDTO {
   @ApiProperty({
     example: 32,
     description:
-      'Esse campo identifica a idade do usuário, deve ser prenchido com a data de nascimento',
+      'Esse campo identifica a idade do usuário, deve ser prenchido com a idade correta',
   })
-  dataNasc: Date;
+  idade: Number;
 
   @IsEmail(undefined, { message: 'email é inválido' })
   @EmailUnico({ message: 'Email já cadastrado, tente novamente' })
@@ -43,6 +43,7 @@ export class criaUsuarioDTO {
     description: 'Deve ser enviado um CEP valido'
   })
   cep: string;
+
 
   @IsString()
   @ApiProperty({

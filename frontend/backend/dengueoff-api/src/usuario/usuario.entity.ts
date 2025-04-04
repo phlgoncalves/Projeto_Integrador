@@ -3,21 +3,23 @@ import * as bcrypt from 'bcrypt';
 export class UsuarioEntity {
   id: string;
   nome: string;
-  dataNasc: Date;
+  idade: Number;
   email: string;
-  endereco: string;
   cep: string;
+  endereco: string;
   complemento: string;
+  cidade: string;
   telefone: string;
   senha: string;
   constructor(
     id: string,
     nome: string,
-    dataNasc: Date,
+    idade: Number,
     email: string,
-    endereco: string,
     cep: string,
+    endereco: string,
     complemento: string,
+    cidade: string,
     telefone: string,
     senha: string,
   ) {
@@ -25,11 +27,12 @@ export class UsuarioEntity {
 
     this.id = id;
     this.nome = nome;
-    this.dataNasc = dataNasc;
+    this.idade = idade;
     this.email = email;
-    this.endereco = endereco;
     this.cep = cep;
+    this.endereco = endereco;
     this.complemento = complemento;
+    this.cidade = cidade;
     this.telefone = telefone;
     this.senha = bcrypt.hashSync(senha, saltOrRounds);
   }

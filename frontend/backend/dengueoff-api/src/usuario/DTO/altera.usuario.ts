@@ -42,6 +42,7 @@ export class alteraUsuarioDTO {
 
   @IsString()
   @MinLength(8, { message: 'CEP deve conter pelo menos 8 digitos' })
+  @IsOptional()
   @ApiPropertyOptional({
     example: '17014000',
     description: 'Deve ser enviado um CEP valido'
@@ -49,6 +50,7 @@ export class alteraUsuarioDTO {
   cep: string;
 
   @IsString()
+  @IsOptional()
   @ApiPropertyOptional({
     example: 'Apartamento 123',
     description: 'Deve ser informado o complemento do endereço'
