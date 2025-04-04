@@ -1,30 +1,31 @@
-import { IsNotEmpty, IsString, IsBoolean, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsString, IsBoolean, IsArray, ArrayNotEmpty, IsUUID } from "class-validator";
 
-export class CreateDenunciaDto {
-  @IsNotEmpty()
-  @IsString()
-  descricao: string;
+export class CriaDenunciaDto {
 
-  @IsNotEmpty()
-  @IsString()
-  fotos: string;
+@IsNotEmpty()
+@IsUUID()
+usuarioId: string;
 
-  @IsNotEmpty()
-  @IsString()
-  endereco: string;
+@IsNotEmpty()
+@IsString()
+descricao: string;
 
-  @IsNotEmpty()
-  @IsString()
-  cep: string;
+@IsArray()
+@IsNotEmpty()
+@ArrayNotEmpty()
+fotos: string;
 
-  @IsString()
-  complemento?: string;
+@IsString()
+@IsNotEmpty()
+cep: string;
 
-  @IsNotEmpty()
-  @IsBoolean()
-  anonimato: boolean;
+@IsString()
+@IsNotEmpty()
+complemento: string;
 
-  @IsNotEmpty()
-  @IsUUID()
-  usuarioId: string;
+@IsBoolean()
+anonimato: boolean;
+    logradouro: any;
+
+
 }
