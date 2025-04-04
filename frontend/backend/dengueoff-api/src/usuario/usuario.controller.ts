@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import {
   Body,
   Controller,
@@ -54,10 +52,11 @@ export class UsuarioController {
     const novoUsuario = new UsuarioEntity(
       uuid(),
       dadosUsuario.nome,
-      dadosUsuario.dataNasc,
+      dadosUsuario.idade,
       dadosUsuario.email,
       dadosUsuario.cep,
       retornoCep.logradouro ? retornoCep.logradouro : '',
+      dadosUsuario.complemento,
       retornoCep.localidade,
       dadosUsuario.telefone,
       dadosUsuario.senha,

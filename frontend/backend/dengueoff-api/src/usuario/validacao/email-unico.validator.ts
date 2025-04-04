@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   ValidationArguments,
   ValidationOptions,
@@ -12,11 +11,10 @@ import { UsuarioService } from '../usuario.service';
 @Injectable()
 @ValidatorConstraint({ async: true })
 export class EmailUnicoValidator implements ValidatorConstraintInterface {
-  constructor(private classeUsuarioService: UsuarioService) {}
+  constructor(private classeUsuarioService: UsuarioService) { }
 
-  validate(value: any, validationArguments?: ValidationArguments): boolean {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const validarEmail = this.classeUsuarioService.validaEmail(value);
+  async validate(value: any, validationArguments?: ValidationArguments): Promise<boolean> {
+    const validarEmail = await this.classeUsuarioService.validaEmail(value);
     return !validarEmail;
   }
 }

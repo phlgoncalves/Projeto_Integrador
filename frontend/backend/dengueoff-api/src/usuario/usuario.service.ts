@@ -58,7 +58,6 @@ export class UsuarioService {
   validarLogin(email: string, senha: string) {
     const usuario = this.buscaPorEmail(email);
     return {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       login: usuario.login(senha),
       usuario: usuario,
     };
@@ -74,7 +73,7 @@ export class UsuarioService {
     return usuario;
   }
 
-  validaEmail(email: string): boolean {
+  async validaEmail(email: string): Promise<boolean> {
     const possivelUsuario = this.#usuarios.find(
       (usuario) => usuario.email === email,
     );
