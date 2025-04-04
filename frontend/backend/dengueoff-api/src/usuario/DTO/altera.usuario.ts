@@ -28,7 +28,7 @@ export class alteraUsuarioDTO {
     description:
       'Esse campo identifica a idade do usuário, deve ser prenchido com a data de nascimento',
   })
-  dataNasc: Date;
+  idade: Number;
 
   @IsEmail(undefined, { message: 'email é inválido' })
   @EmailUnico({ message: 'Email já cadastrado, tente novamente' })

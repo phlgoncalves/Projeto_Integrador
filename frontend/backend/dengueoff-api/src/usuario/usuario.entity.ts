@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 export class UsuarioEntity {
   id: string;
   nome: string;
+  cpf: string;
   idade: Number;
   email: string;
   cep: string;
@@ -14,6 +15,7 @@ export class UsuarioEntity {
   constructor(
     id: string,
     nome: string,
+    cpf: string,
     idade: Number,
     email: string,
     cep: string,
@@ -27,6 +29,7 @@ export class UsuarioEntity {
 
     this.id = id;
     this.nome = nome;
+    this.cpf = cpf;
     this.idade = idade;
     this.email = email;
     this.cep = cep;

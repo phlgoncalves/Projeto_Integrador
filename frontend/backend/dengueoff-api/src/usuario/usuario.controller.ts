@@ -52,6 +52,7 @@ export class UsuarioController {
     const novoUsuario = new UsuarioEntity(
       uuid(),
       dadosUsuario.nome,
+      dadosUsuario.cpf,
       dadosUsuario.idade,
       dadosUsuario.email,
       dadosUsuario.cep,

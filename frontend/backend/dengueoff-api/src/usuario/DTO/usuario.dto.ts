@@ -3,6 +3,7 @@ import {
   IsInt,
   IsNotEmpty,
   IsString,
+  MaxLength,
   MinLength,
 } from 'class-validator';
 import { EmailUnico } from '../validacao/email-unico.validator';
@@ -18,6 +19,17 @@ export class criaUsuarioDTO {
       'Esse campo vai ser utilizado como identificação do usuário, deve ser informado um nome completo',
   })
   nome: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'CPF não pode ficar vazio' })
+  @MinLength(11, {message:'Digite apenas os números'})
+  @MaxLength(11, {message: 'Digite apenas os números'})
+  @ApiProperty({
+    example: '603.648.188-83',
+    description:
+      'Esse campo vai ser utilizado como identificação única do usuário, deve ser informado o CPF',
+  })
+  cpf: string;
 
   @IsInt()
   @ApiProperty({
