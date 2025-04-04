@@ -1,37 +1,54 @@
-import { IsNotEmpty, IsString, IsBoolean, IsUUID, IsOptional} from 'class-validator';
+import { ApiPropertyOptional } from "@nestjs/swagger";
+import { IsNotEmpty, IsString, IsBoolean, IsArray, IsOptional } from "class-validator";
 
-export class CreateDenunciaDto {
-  @IsNotEmpty()
+export class alteraDenunciaDto {
+
   @IsString()
+  @IsNotEmpty({ message: 'Não pode ser vazio' })
   @IsOptional()
+  @ApiPropertyOptional({
+    example: 'Terreno abandonado',
+    description:
+      'Esse campo vai ser utilizado como identificação da descrição: Terreno, casa abandonada, etc. ',
+  })
   descricao: string;
 
+  @IsArray()
   @IsNotEmpty()
-  @IsString()
   @IsOptional()
+  @ApiPropertyOptional({
+    example: 'Fotos',
+    description:
+      'Esse campo será responsável pela imagem da denúncia.',
+  })
   fotos: string;
 
-  @IsNotEmpty()
   @IsString()
-  @IsOptional()
-  endereco: string;
-
   @IsNotEmpty()
-  @IsString()
   @IsOptional()
+  @ApiPropertyOptional({
+    example: '17014310',
+    description:
+      'Esse campo vai ser utilizado para informar CPF',
+  })
   cep: string;
 
   @IsString()
-  @IsOptional()
-  complemento?: string;
-
   @IsNotEmpty()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: 'A-25',
+    description:
+      'Complemento do lugar para denúncia',
+  })
+  complemento: string;
+
   @IsBoolean()
   @IsOptional()
+  @ApiPropertyOptional({
+    example: 'True',
+    description:
+      'Se verdadeiro a denúncia não aparecerá com o nome do denunciador',
+  })
   anonimato: boolean;
-
-  @IsNotEmpty()
-  @IsUUID()
-  @IsOptional()
-  usuarioId: string;
 }

@@ -4,8 +4,8 @@ export class DenunciaEntity {
   id: string;
   descricao: string;
   fotos: string;
-  endereco: string;
   cep: string;
+  endereco: string;
   complemento: string;
   anonimato: boolean;
   usuario: UsuarioEntity;
@@ -13,8 +13,8 @@ export class DenunciaEntity {
     id: string,
     descricao: string,
     fotos: string,
-    endereco: string,
     cep: string,
+    endereco: string,
     complemento: string,
     anonimato: boolean,
     usuario: UsuarioEntity,
@@ -22,8 +22,8 @@ export class DenunciaEntity {
     this.id = id;
     this.descricao = descricao;
     this.fotos = fotos;
-    this.endereco = endereco;
     this.cep = cep;
+    this.endereco = endereco;
     this.complemento = complemento;
     this.anonimato = anonimato;
     this.usuario = usuario;
