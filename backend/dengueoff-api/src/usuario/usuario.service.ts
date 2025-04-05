@@ -81,6 +81,7 @@ export class UsuarioService {
   }
 
   async findById(id: string): Promise<UsuarioEntity> {
+    console.log('Lista de usuários:', this.#usuarios);
     return this.buscaPorID(id);
   }
 }
