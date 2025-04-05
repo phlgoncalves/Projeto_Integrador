@@ -1,45 +1,41 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, IsBoolean, IsArray, IsOptional } from "class-validator"
+import { IsString, IsBoolean, IsArray, IsOptional } from "class-validator"
 
-export class alteraDenunciaDto {
+export class AlteraDenunciaDto {
 
   @IsString()
-  @IsNotEmpty({ message: 'Não pode ser vazio' })
   @IsOptional()
   @ApiPropertyOptional({
-    example: 'Terreno abandonado',
+    example: 'Lixo acumulado em terreno baldio',
     description:
-      'Esse campo vai ser utilizado como identificação da descrição: Terreno, casa abandonada, etc. ',
+      'Esse campo é opcional na alteração e vai ser utilizado para alterar a identificação da descrição: Terreno, casa abandonada, etc. ',
   })
   descricao: string;
 
   @IsArray()
-  @IsNotEmpty()
   @IsOptional()
   @ApiPropertyOptional({
-    example: 'Fotos',
+    example: '["foto1.jpg", "foto2.jpg"]',
     description:
-      'Esse campo será responsável pela imagem da denúncia.',
+      'Esse campo é opcional na alteração e será responsável pelas imagens da denúncia.',
   })
   fotos: string;
 
   @IsString()
-  @IsNotEmpty()
   @IsOptional()
   @ApiPropertyOptional({
     example: '17014310',
     description:
-      'Esse campo vai ser utilizado para informar CPF',
+      'Esse campo é opcional na alteração e vai ser utilizado para alterar CPF',
   })
   cep: string;
 
   @IsString()
-  @IsNotEmpty()
   @IsOptional()
   @ApiPropertyOptional({
-    example: 'A-25',
+    example: 'próximo à praça',
     description:
-      'Complemento do lugar para denúncia',
+      'Campo opcional na alteração do complemento do lugar para denúncia para facilitar a localização',
   })
   complemento: string;
 
@@ -48,7 +44,7 @@ export class alteraDenunciaDto {
   @ApiPropertyOptional({
     example: 'True',
     description:
-      'Se verdadeiro a denúncia não aparecerá com o nome do denunciador',
+      'Se verdadeira a denúncia não aparecerá com o nome do denunciador',
   })
   anonimato: boolean;
 }

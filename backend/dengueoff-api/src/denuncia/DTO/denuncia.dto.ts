@@ -1,12 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, IsBoolean, IsArray, IsUUID } from "class-validator";
+import { IsNotEmpty, IsString, IsBoolean, IsArray} from "class-validator";
 
 export class CriaDenunciaDto {
 
   @IsString()
   @IsNotEmpty({ message: 'Não pode ser vazio' })
   @ApiProperty({
-    example: 'Terreno abandonado',
+    example: 'Lixo acumulado em terreno baldio',
     description:
       'Esse campo vai ser utilizado como identificação da descrição: Terreno, casa abandonada, etc. ',
   })
@@ -15,7 +15,7 @@ export class CriaDenunciaDto {
   @IsArray()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'Fotos',
+    example: '["foto1.jpg", "foto2.jpg"]',
     description:
       'Esse campo será responsável pela imagem da denúncia.',
   })
@@ -33,15 +33,15 @@ export class CriaDenunciaDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'A-25',
+    example: 'próximo à praça',
     description:
-      'Complemento do lugar para denúncia',
+      'Esse campo é utilizado para informar o complemento do lugar para denúncia para facilitar a localização',
   })
   complemento: string;
 
   @IsBoolean()
   @ApiProperty({
-    example: 'True',
+    example: 'false',
     description:
       'Se verdadeiro a denúncia não aparecerá com o nome do denunciador',
   })
@@ -54,6 +54,4 @@ export class CriaDenunciaDto {
       'ID do usuário que está realizando a denúncia.',
   })
   usuarioId: string;
-
-
 }
