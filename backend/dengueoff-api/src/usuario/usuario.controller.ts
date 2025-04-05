@@ -20,11 +20,12 @@ import { ApiBadRequestResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom, map } from 'rxjs';
 
-@ApiTags('usuario')
+@ApiTags('usuarios')
 @Controller('/usuarios')
 export class UsuarioController {
   constructor(private classeUsuarioService: UsuarioService, private httpService: HttpService) { }
 
+  @ApiResponse({ status: 201, description: 'Retorna que houve sucesso ao criar um usuário' })
   @Post()
   @ApiResponse({
     status: 201,
@@ -73,6 +74,8 @@ export class UsuarioController {
     return usuario;
   }
 
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na requisição' })
+  @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado' })
   @Get()
   listaUsuarios() {
     this.classeUsuarioService.Usuarios;
@@ -85,6 +88,8 @@ export class UsuarioController {
     return listaRetorno;
   }
 
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na requisição' })
+  @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado' })
   @Put('/:id')
   async atualizaUsuario(
     @Param('id') id: string,
@@ -126,6 +131,8 @@ export class UsuarioController {
     };
   }
 
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na requisição' })
+  @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado' })
   @Delete('/:id')
   removeUsuario(@Param('id') id: string) {
     const usuarioRemovido = this.classeUsuarioService.removeUsuario(id);
