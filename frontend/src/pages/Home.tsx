@@ -42,13 +42,23 @@ const Home: React.FC = () => {
                 <div className="boas-vindas">
                     <div className="container-boas">
                         <div className="titulo">
-                            <h1>DENGUE OFF</h1>
+                            {/* <h1>DENGUE OFF</h1> */}
                             <br />
                             <h2>Reporte e Ajude</h2>
                         </div>
                         <div className='explicativo'>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo illo suscipit possimus? Animi eaque eum rerum, nulla temporibus aspernatur commodi? Aut deserunt, odio culpa nihil nulla quisquam dolorem, soluta minima rerum excepturi aliquid laborum facere eaque eveniet provident numquam distinctio ab mollitia quod reiciendis cumque amet. Maiores doloremque amet veritatis.</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis minus tempora ad sed praesentium voluptas eaque suscipit unde veritatis reprehenderit, repudiandae pariatur animi quo assumenda quasi totam, numquam cum, id illum magni omnis hic nobis! Reiciendis ducimus ex suscipit culpa animi natus magni, fuga, ullam totam ut non accusantium voluptatem!</p>
+                            <p>Olá! Seja muito bem-vindo ao nosso site, um espaço feito especialmente para informar, conscientizar e agir juntos no combate à dengue.
+                            <br /><br />
+                                A dengue é uma ameaça real que afeta milhares de pessoas todos os anos. E a melhor forma de vencê-la é com a participação de todos. 
+                                Aqui, você pode fazer denúncias de focos do mosquito Aedes aegypti, como água parada, terrenos abandonados ou locais com riscos de 
+                                infestação.
+                            </p>
+
+                            <p>Sua denúncia é fundamental. Com ela, podemos acionar as autoridades responsáveis e evitar que o mosquito se espalhe, protegendo 
+                                sua família, seus vizinhos e toda a comunidade.
+                            <br /><br />
+                                💡 Juntos, somos mais fortes contra a dengue. Faça sua parte, denuncie e compartilhe!
+                            </p>
                         </div>
                         <br /><br /><br />
                         <div className='numero-denuncias'>

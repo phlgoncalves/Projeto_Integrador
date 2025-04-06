@@ -92,9 +92,11 @@ a:hover {
     align-items: center;
 }
 
+p{
+    font-family: 'Times New Roman', Times, serif;
+}
+
 .boas-vindas {
-    /* background-image: url('/src/assets/mosquito-home.png'); */
-    /* background-image: url('/src/assets/mosquito.png'); */
     width: 100%;
     background-repeat: no-repeat;
     background-size: 30% auto;
@@ -453,34 +455,61 @@ a:hover {
 .container-denuncias{
     background-color: #F7F7F7;
     display: flex;
+    align-items: center;
+    height: 900px;
     flex-direction: column;
-    height: 700px;
-   margin-right: 50px;
-   margin-left: 50px;
-   gap: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
   }
 
-  .formulario-denuncia{
-    background-color: #45a049;
-    height: 700px;
+ 
+    .escolha-arquivo{
+    border: black 1px dashed ;
+    border-radius: 20px;
+    height: 200px;
+    width: 600px; 
+    margin-top: 100px;
+    background-color: #d2dad2;
+    display: flex;
     justify-content: center;
-    
+    align-items: end;
+    position: inherit;
   }
 
-  input.escolha-arquivo{
-    border: black 2px dashed ;
-    height: 100px;
-    width: 500px;
-   
+
+  .escolha-arquivo input{
+    width: 300px;
+    height: 50px;
   }
 
-  label.descricao{
-   border: 1px solid;
+  textarea {
+    height: 200px;
+    width: 400px;
+    resize: none; 
+  }
+
+  .descricao{
+   margin-left: -200px;
+   resize: none;
   }
 
   .denuncia-end{
-    background-color: #f2f6f8;
-    border: 1px solid;
+    margin-left: -100px;
+    margin-top: 30px;
+    width: 500px;
+    height: 200px;
+  }
+
+  .cep-input{
+    width: 90px;
+  }
+
+  .rua-input{
+    width: 200px;
+  }
+
+  .numero-input{
+    width: 50px;
   }
   
 /* --------------FOOTER-------------- */

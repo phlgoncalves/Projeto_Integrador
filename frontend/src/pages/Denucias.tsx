@@ -6,12 +6,10 @@ function Denuncias() {
     <>
       <Header />
       <div className="container-denuncias">
-        <div>
-          <h1>Página de Denuncias</h1>
-        </div>
-        {/* <div className="formulario-denuncia"> */}
-        <div>
-          <input className="escolha-arquivo"
+
+        <div className="escolha-arquivo">
+
+          <input 
             type="file"
             id="foto"
             name="foto"
@@ -19,22 +17,26 @@ function Denuncias() {
             // onChange={handleFileChange}
             required
           />
+        </div>
+
+        <br /><br />
+
+        <label className="descricao">Descriçao
+          <br />
+          <textarea placeholder="Descreva sua Denuncia!" name="" id="" cols={30} rows={8}></textarea>
+        </label>
+
+        <div className="denuncia-end">
+          Cep: <br />
+          <input className="cep-input" type="text" placeholder="Digite um cep " />
           <br /><br />
-          <label className="descricao">Descriçao
-            <br />
-            <textarea name="" id="" cols="30" rows="8"></textarea>
-          </label>
-          
-          <div className="denuncia-end">
-            Endereço: <br />
-            <input type="text" placeholder="Digite um cep valido" />
-            <br />
-            <input type="text" placeholder="Endereço" />
-            <br />
-            <input type="text" placeholder="Numero" />
-            <br />
-            <button type="submit">Enviar</button>
-          </div>
+          Rua: <br />
+          <input className="rua-input" type="text" placeholder="Rua" />
+          <br /><br />
+          Numero: <br />
+          <input className="numero-input" type="text" placeholder="Numero" />
+          <br /><br />
+          <button type="submit">Enviar</button>
         </div>
       </div>
       <Footer />
