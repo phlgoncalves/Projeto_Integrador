@@ -54,7 +54,7 @@ export class DenunciaController {
 
     const denuncia = {
       dadosDenuncia: novaDenuncia,
-      status: 'denuncia'
+      status: 'Denuncia Criada'
     }
 
     return denuncia

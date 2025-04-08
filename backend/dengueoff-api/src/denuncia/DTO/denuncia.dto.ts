@@ -12,7 +12,8 @@ export class CriaDenunciaDto {
   })
   descricao: string;
 
-  @IsArray()
+  // @IsArray()
+  @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: '["foto1.jpg", "foto2.jpg"]',

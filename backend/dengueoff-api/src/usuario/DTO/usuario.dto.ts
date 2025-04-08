@@ -25,7 +25,7 @@ export class criaUsuarioDTO {
   @MinLength(11, {message:'Digite apenas os números'})
   @MaxLength(11, {message: 'Digite apenas os números'})
   @ApiProperty({
-    example: '603.648.188-83',
+    example: '60364818883',
     description:
       'Esse campo vai ser utilizado como identificação única do usuário, deve ser informado o CPF',
   })
