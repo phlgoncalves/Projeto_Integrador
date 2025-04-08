@@ -99,7 +99,7 @@ function RegistrationForm() {
       <label htmlFor="dataNasc">Data de Nascimento</label>
       <input type="date" name="dataNasc" id="dataNasc" />
 
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">E-mail</label>
       <input
         type="email"
         name="email"

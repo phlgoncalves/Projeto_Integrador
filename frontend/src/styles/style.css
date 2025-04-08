@@ -453,7 +453,8 @@ p{
 
 /*-----DENUNCIAS---------*/
 .container-denuncias{
-    background-color: #F7F7F7;
+    /* background-color: #F7F7F7; */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     height: 900px;
@@ -511,6 +512,85 @@ p{
   .numero-input{
     width: 50px;
   }
+
+  /* Switch.css */
+.switch-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .switch-input {
+    appearance: none;
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .switch-input:checked {
+    background-color: #4CAF50;
+  }
+  
+  .switch-input:checked::before {
+    transform: translateX(25px);
+  }
+  
+  .switch-input::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .switch-label {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+
+
+
+
+
+  /* .button{
+    width: 60px;
+    height: 25px;
+    background-color: #fafdff;
+    border-radius: 50px;
+    box-shadow: 0 0 2.5px 0 black;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .ball{
+    position: absolute;
+    width: 30px;
+    height: 25px;
+    top: 0;
+    left: 0px;
+    border-radius: 50%;
+    background-color: black;
+    transition: left 1s;
+  }
+
+  .ball-move{
+    left: calc(100% - 30px);
+  }
+
+  .button:hover{
+    background-color: red;
+  } */
+
+
+
   
 /* --------------FOOTER-------------- */
 .container-footer {
