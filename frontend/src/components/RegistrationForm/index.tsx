@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 function RegistrationForm() {
   const [nome, setNome] = useState('');
+  const [dataNasc, setdataNasc] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [celular, setCelular] = useState('');
@@ -29,6 +30,20 @@ function RegistrationForm() {
       valor = valor.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     }
     setCelular(valor);
+  }
+
+  const formatarDataNascimento = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  
+    // Remove todos os caracteres que não sejam números
+    let valorAtual = event.target.value.replace(/\D/g, '');
+  
+    // Formata a data para o formato DD/MM/AAAA
+    if (valorAtual.length >= 3 && valorAtual.length <= 4) {
+      valorAtual = valorAtual.slice(0, 2) + '/' + valorAtual.slice(2);
+    } else if (valorAtual.length >= 5 && valorAtual.length <= 8) {
+      valorAtual = valorAtual.slice(0, 2) + '/' + valorAtual.slice(2, 4) + '/' + valorAtual.slice(4);
+    }
+    setdataNasc(valorAtual);
   }
 
   // Função para validar o email
@@ -97,7 +112,15 @@ function RegistrationForm() {
       />
 
       <label htmlFor="dataNasc">Data de Nascimento</label>
-      <input type="date" name="dataNasc" id="dataNasc" />
+      <input 
+        type="text" 
+        name="dataNasc" 
+        id="dataNasc"
+        placeholder="DD/MM/AAAA"
+        maxLength={10}
+        value={dataNasc}
+        onChange={formatarDataNascimento}/>
+        
 
       <label htmlFor="email">E-mail</label>
       <input
