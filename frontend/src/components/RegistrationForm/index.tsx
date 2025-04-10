@@ -6,6 +6,7 @@ function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [celular, setCelular] = useState('');
+  const [cep, setCep] = useState('');
   const [senha, setSenha] = useState('');
   const [confirSenha, setConfirSenha] = useState('');
   const [error, setError] = useState('');
@@ -33,7 +34,6 @@ function RegistrationForm() {
   }
 
   const formatarDataNascimento = (event: React.ChangeEvent<HTMLInputElement>): void => {
-  
     // Remove todos os caracteres que não sejam números
     let valorAtual = event.target.value.replace(/\D/g, '');
   
@@ -45,6 +45,16 @@ function RegistrationForm() {
     }
     setdataNasc(valorAtual);
   }
+
+  const formatarCEP = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    // Remove todos os caracteres que não sejam números
+    let valorAtual = event.target.value.replace(/\D/g, '');
+    // Formata o CEP para o formato XXXXX-XXX
+    if (valorAtual.length >= 6) {
+      valorAtual = valorAtual.slice(0, 5) + '-' + valorAtual.slice(5, 8);
+    }
+    setCep(valorAtual)
+  };
 
   // Função para validar o email
   const validateEmail = (email: string): boolean => {
@@ -154,6 +164,16 @@ function RegistrationForm() {
         value={celular}
         onChange={formatarCelular}
       />
+
+      <label htmlFor="text">CEP</label>
+      <input 
+        type="text" 
+        name="cep" 
+        id="cep"
+        placeholder="XXXXX-XXX"
+        maxLength={10}
+        value={cep}
+        onChange={formatarCEP}/>
 
       <label htmlFor="senha">Senha</label>
       <input
