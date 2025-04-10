@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&family=Calistoga&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nanum+Brush+Script&family=Raleway:ital,wght@0,100..900;1,100..900&family=Road+Rage&family=Sedan:ital@0;1&display=swap');
 
 
-/* RESETS
+RESETS
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} */
+    
+}
 
 /* BODY */
 
@@ -173,7 +174,7 @@ p{
     gap: 10px;
     height: 600px;
     color: white;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .cards {
@@ -305,7 +306,7 @@ p{
     padding: 1.25rem;
     background-color: #F7F7F7;
     opacity: 75%;
-    height: 28.12rem;
+    height: 30rem;
     width: 26.25rem;
     align-self: center;
     border-radius: 50px;
@@ -320,15 +321,36 @@ p{
     padding-left: 0.5rem;
 }
 
+.container-btn-registro{
+    width: 380px;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    background-color: #D9ED92;
+    width: 120px;
+    height: 40px;
+    border-radius: 30px;
+    
+
+}
+
 /* ESTILO ESPECIFICO PARA O CAMPO NOME */
-.registro>input[name="nome"] {
+/* .registro>input[name="nome"] {
     background-color: #ffffff;
     border: 2px solid #184E77;
     font-size: 1rem;
     color: #184E77;
-}
+} */
 
-.registro>input[name="nome"]:focus {
+/* .registro>input[name="nome"]:focus {
+    outline: none;
+    border-color: #D9ED92;
+    box-shadow: 0 0 5px rgba(217, 237, 146, 0.5);
+} */
+
+.input-registro:focus{
     outline: none;
     border-color: #D9ED92;
     box-shadow: 0 0 5px rgba(217, 237, 146, 0.5);
@@ -459,8 +481,8 @@ p{
     align-items: center;
     height: 900px;
     flex-direction: column;
-    margin-left: 100px;
-    margin-right: 100px;
+    /* margin-left: 100px;
+    margin-right: 100px; */
   }
 
  
@@ -554,42 +576,6 @@ p{
     margin-left: 10px;
     font-size: 14px;
   }
-
-
-
-
-
-
-  /* .button{
-    width: 60px;
-    height: 25px;
-    background-color: #fafdff;
-    border-radius: 50px;
-    box-shadow: 0 0 2.5px 0 black;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .ball{
-    position: absolute;
-    width: 30px;
-    height: 25px;
-    top: 0;
-    left: 0px;
-    border-radius: 50%;
-    background-color: black;
-    transition: left 1s;
-  }
-
-  .ball-move{
-    left: calc(100% - 30px);
-  }
-
-  .button:hover{
-    background-color: red;
-  } */
-
-
 
   
 /* --------------FOOTER-------------- */

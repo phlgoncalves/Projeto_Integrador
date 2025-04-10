@@ -87,7 +87,7 @@ function RegistrationForm() {
   return (
     <div className="registro">
       <label htmlFor="nome">Nome</label>
-      <input
+      <input className="input-registro"
         type="text"
         name="nome"
         id="nome"
@@ -97,10 +97,10 @@ function RegistrationForm() {
       />
 
       <label htmlFor="dataNasc">Data de Nascimento</label>
-      <input type="date" name="dataNasc" id="dataNasc" />
+      <input className="input-registro" type="date" name="dataNasc" id="dataNasc" />
 
       <label htmlFor="email">E-mail</label>
-      <input
+      <input className="input-registro"
         type="email"
         name="email"
         id="email"
@@ -111,7 +111,7 @@ function RegistrationForm() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <label htmlFor="cpf">CPF</label>
-      <input
+      <input className="input-registro"
         type="text"
         name="cpf"
         id="cpf"
@@ -122,7 +122,7 @@ function RegistrationForm() {
       />
 
       <label htmlFor="celular">Celular</label>
-      <input
+      <input className="input-registro"
         type="tel"
         name="celular"
         id="celular"
@@ -133,7 +133,7 @@ function RegistrationForm() {
       />
 
       <label htmlFor="senha">Senha</label>
-      <input
+      <input className="input-registro"
         type="password"
         name="senha"
         id="senha"
@@ -143,7 +143,7 @@ function RegistrationForm() {
       />
 
       <label htmlFor="confirSenha">Confirme sua senha</label>
-      <input
+      <input className="input-registro"
         type="password"
         name="confirSenha"
         id="confirSenha"
@@ -152,8 +152,9 @@ function RegistrationForm() {
         onChange={(e) => setConfirSenha(e.target.value)}
       />
       {senhaError && <p style={{ color: 'red' }}>{senhaError}</p>}
-
-      <button onClick={handleSubmit}>Criar Conta</button>
+      <div className="container-btn-registro">
+        <button  onClick={handleSubmit}>Criar Conta</button>
+      </div>
     </div>
   );
 }

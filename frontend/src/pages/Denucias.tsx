@@ -4,12 +4,6 @@ import Header from "../components/Header";
 
 function Denuncias() {
 
-  // const [isMoved, setIsMoved] = useState(false);
-
-  // const handleClick = () => {
-  //   setIsMoved(!isMoved);
-  // }
-
     const [isChecked, setIsChecked] = useState(true);
   
     const handleChange = () => {
@@ -63,9 +57,6 @@ function Denuncias() {
           <input className="numero-input" type="text" placeholder="Numero" />
           <br />
           <br />
-          {/* <div className="button" onClick={handleClick}>
-            <div className={`ball ${isMoved ? "ball-move" : ""}`}></div>
-          </div> */}
            Denuncia :
            <br />
             <div className="switch-container">
