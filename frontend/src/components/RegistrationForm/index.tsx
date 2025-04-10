@@ -2,9 +2,11 @@ import React, { useState } from "react"
 
 function RegistrationForm() {
   const [nome, setNome] = useState('');
+  const [dataNasc, setdataNasc] = useState('');
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [celular, setCelular] = useState('');
+  const [cep, setCep] = useState('');
   const [senha, setSenha] = useState('');
   const [confirSenha, setConfirSenha] = useState('');
   const [error, setError] = useState('');
@@ -30,6 +32,29 @@ function RegistrationForm() {
     }
     setCelular(valor);
   }
+
+  const formatarDataNascimento = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    // Remove todos os caracteres que não sejam números
+    let valorAtual = event.target.value.replace(/\D/g, '');
+  
+    // Formata a data para o formato DD/MM/AAAA
+    if (valorAtual.length >= 3 && valorAtual.length <= 4) {
+      valorAtual = valorAtual.slice(0, 2) + '/' + valorAtual.slice(2);
+    } else if (valorAtual.length >= 5 && valorAtual.length <= 8) {
+      valorAtual = valorAtual.slice(0, 2) + '/' + valorAtual.slice(2, 4) + '/' + valorAtual.slice(4);
+    }
+    setdataNasc(valorAtual);
+  }
+
+  const formatarCEP = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    // Remove todos os caracteres que não sejam números
+    let valorAtual = event.target.value.replace(/\D/g, '');
+    // Formata o CEP para o formato XXXXX-XXX
+    if (valorAtual.length >= 6) {
+      valorAtual = valorAtual.slice(0, 5) + '-' + valorAtual.slice(5, 8);
+    }
+    setCep(valorAtual);
+  };
 
   // Função para validar o email
   const validateEmail = (email: string): boolean => {
@@ -97,7 +122,19 @@ function RegistrationForm() {
       />
 
       <label htmlFor="dataNasc">Data de Nascimento</label>
+<<<<<<< HEAD
       <input className="input-registro" type="date" name="dataNasc" id="dataNasc" />
+=======
+      <input 
+        type="text" 
+        name="dataNasc" 
+        id="dataNasc"
+        placeholder="DD/MM/AAAA"
+        maxLength={10}
+        value={dataNasc}
+        onChange={formatarDataNascimento}/>
+        
+>>>>>>> 91da4c21a3f4379f98b62424c9cd7c4e873272b8
 
       <label htmlFor="email">E-mail</label>
       <input className="input-registro"
@@ -131,6 +168,16 @@ function RegistrationForm() {
         value={celular}
         onChange={formatarCelular}
       />
+
+      <label htmlFor="text">CEP</label>
+      <input 
+        type="text" 
+        name="cep" 
+        id="cep"
+        placeholder="XXXXX-XXX"
+        maxLength={10}
+        value={cep}
+        onChange={formatarCEP}/>
 
       <label htmlFor="senha">Senha</label>
       <input className="input-registro"
