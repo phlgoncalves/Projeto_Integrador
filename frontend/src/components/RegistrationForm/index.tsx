@@ -53,7 +53,7 @@ function RegistrationForm() {
     if (valorAtual.length >= 6) {
       valorAtual = valorAtual.slice(0, 5) + '-' + valorAtual.slice(5, 8);
     }
-    setCep(valorAtual)
+    setCep(valorAtual);
   };
 
   // Função para validar o email
