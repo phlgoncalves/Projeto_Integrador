@@ -60,7 +60,7 @@ export const api = {
         return json;
     },
 
-    AdicionarDenuncia: async (descricao: string, fotos: string, cep: string, complemento:string, anonimato:boolean, usuarioId:string) => {
+    AdicionarDenuncia: async (descricao: string, fotos: string, cep: string, complemento: string, anonimato: boolean, usuarioId: string) => {
         let response = await fetch('##',
             {
                 method: 'POST',
@@ -98,5 +98,27 @@ export const api = {
         let json = await response.json();
         return json;
     },
+    Logar: async (username: string, password: string) => {
+        {
+            let response = await fetch('##',
+                {
+                    method: 'POST',
+                    body: JSON.stringify
+                        ({
+                            email: username,
+                            senha: password
+                        }),
+                    headers: {
+                        'Content-Type': 'application/json; charset-utf-8'
+                    }
+                }
+            );
+            let json = await response.json();
+
+            console.log(json);
+            return json;
+
+        }
+    }
 
 }
