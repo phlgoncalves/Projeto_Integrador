@@ -1,6 +1,29 @@
+import { useState } from "react";
 import { Link } from "react-router-dom"
+import { api } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 function Authentication() {
+
+    const [fUser, setfUser] = useState('');
+    const [fSenha, setfSenha] = useState('');
+    const [msgApi, setmsgApi] = useState('');
+    const navigate = useNavigate();
+    
+    const RealizarLogin = async () => {
+        {
+            let json = await api.Logar(fUser, fSenha);
+
+            if (json.status){
+                alert('Bem vindo');
+                //UsuarioLogadoCtx?.setName(json.usuario);
+
+                navigate('/home');
+            }else{
+                setmsgApi(json.message);
+            }
+        }   
+    }
     return (
         <>
             <div>
