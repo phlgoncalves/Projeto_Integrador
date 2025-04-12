@@ -112,7 +112,8 @@ function RegistrationForm() {
   return (
     <div className="registro">
       <label htmlFor="nome">Nome</label>
-      <input className="input-registro"
+      <input
+        className="input-registro"
         type="text"
         name="nome"
         id="nome"
@@ -120,11 +121,18 @@ function RegistrationForm() {
         value={nome}
         onChange={(e) => setNome(e.target.value)}
       />
-
+  
       <label htmlFor="dataNasc">Data de Nascimento</label>
-      <input className="input-registro" type="date" name="dataNasc" id="dataNasc" />
+      <input
+        className="input-registro"
+        type="date"
+        name="dataNasc"
+        id="dataNasc"
+      />
+  
       <label htmlFor="email">E-mail</label>
-      <input className="input-registro"
+      <input
+        className="input-registro"
         type="email"
         name="email"
         id="email"
@@ -132,10 +140,11 @@ function RegistrationForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
+      {error && <p className="error-msg">{error}</p>}
+  
       <label htmlFor="cpf">CPF</label>
-      <input className="input-registro"
+      <input
+        className="input-registro"
         type="text"
         name="cpf"
         id="cpf"
@@ -144,30 +153,34 @@ function RegistrationForm() {
         value={cpf}
         onChange={formatarCPF}
       />
-
+  
       <label htmlFor="celular">Celular</label>
-      <input className="input-registro"
+      <input
+        className="input-registro"
         type="tel"
         name="celular"
         id="celular"
-        placeholder="Informe seu numero de celular"
+        placeholder="Informe seu número de celular"
         maxLength={15}
         value={celular}
         onChange={formatarCelular}
       />
-
-      <label htmlFor="text">CEP</label>
+  
+      <label htmlFor="cep">CEP</label>
       <input
+        className="input-registro"
         type="text"
         name="cep"
         id="cep"
         placeholder="XXXXX-XXX"
         maxLength={10}
         value={cep}
-        onChange={formatarCEP} />
-
+        onChange={formatarCEP}
+      />
+  
       <label htmlFor="senha">Senha</label>
-      <input className="input-registro"
+      <input
+        className="input-registro"
         type="password"
         name="senha"
         id="senha"
@@ -175,9 +188,10 @@ function RegistrationForm() {
         value={senha}
         onChange={(e) => setSenha(e.target.value)}
       />
-
+  
       <label htmlFor="confirSenha">Confirme sua senha</label>
-      <input className="input-registro"
+      <input
+        className="input-registro"
         type="password"
         name="confirSenha"
         id="confirSenha"
@@ -185,14 +199,13 @@ function RegistrationForm() {
         value={confirSenha}
         onChange={(e) => setConfirSenha(e.target.value)}
       />
-      {senhaError && <p style={{ color: 'red' }}>{senhaError}</p>}
+      {senhaError && <p className="error-msg">{senhaError}</p>}
+  
       <div className="container-btn-registro">
         <button onClick={handleSubmit}>Criar Conta</button>
       </div>
     </div>
   );
 }
-
 export default RegistrationForm;
-
 

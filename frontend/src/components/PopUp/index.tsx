@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import "../../styles/style.css"
 
-const nomes = ["Wellington Medeiros", "Maria Eduarda", "Pedro Gonçalves", "Ana Lucia", "Lucas Tico"];
-const bairros = ["Redentor", "Geisel", "Mary Dota", "Estoril", "Vila Universitaria", " "];
+const nomes = ["Wellington Medeiros", "Maria Eduarda", "Pedro Gonçalves", "Ana Lucia", "Lucas Tico", "Bianca Brito"];
+const bairros = ["Redentor", "Geisel", "Mary Dota", "Estoril", "Vila Universitaria", "Bela Vista", "Falcão", "Idependencia", "jaragua"];
 
 function Popups() {
   const [mensagem, setMensagem] = useState('');
@@ -12,7 +12,7 @@ function Popups() {
     const nome = nomes[Math.floor(Math.random() * nomes.length)];
     const bairro = bairros[Math.floor(Math.random() * bairros.length)];
 
-    setMensagem(`${nome} de ${bairro} acabou de fazer uma denuncia!`);
+    setMensagem(`${nome} acabou de fazer uma denuncia em ${bairro}`);
     setVisivel(true);
 
     setTimeout(() => {
@@ -23,7 +23,7 @@ function Popups() {
   useEffect(() => {
     const intervalo = setInterval(() => {
       mostrarNotificacao();
-    }, 18000); // A cada 18 segundos
+    }, 30000); // A cada 30 segundos
 
     mostrarNotificacao(); // exibe a primeira já
 

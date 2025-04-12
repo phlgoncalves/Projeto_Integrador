@@ -31,10 +31,20 @@ const Home: React.FC = () => {
         setIsModalOpen(false);
     };
 
-    // Navega para a página de destino
     const handleDenuncia = () => {
-        navigate('denuncia');
-    }
+        const token = localStorage.getItem('token');
+        console.log('Token:', token); // Verifique no console se o token está presente
+        if (token) {
+            navigate('/denuncia');
+        } else {
+            alert('Você precisa estar logado para fazer uma denúncia.');
+            navigate('/login');
+        }
+    };
+    // Navega para a página de destino
+    // const handleDenuncia = () => {
+    //     navigate('denuncia');
+    // }
 
     return (
         <>
@@ -50,15 +60,15 @@ const Home: React.FC = () => {
                         </div>
                         <div className='explicativo'>
                             <p>Olá! Seja muito bem-vindo ao nosso site, um espaço feito especialmente para informar, conscientizar e agir juntos no combate à dengue.
-                            <br /><br />
-                                A dengue é uma ameaça real que afeta milhares de pessoas todos os anos. E a melhor forma de vencê-la é com a participação de todos. 
-                                Aqui, você pode fazer denúncias de focos do mosquito Aedes aegypti, como água parada, terrenos abandonados ou locais com riscos de 
+                                <br /><br />
+                                A dengue é uma ameaça real que afeta milhares de pessoas todos os anos. E a melhor forma de vencê-la é com a participação de todos.
+                                Aqui, você pode fazer denúncias de focos do mosquito Aedes aegypti, como água parada, terrenos abandonados ou locais com riscos de
                                 infestação.
                             </p>
 
-                            <p>Sua denúncia é fundamental. Com ela, podemos acionar as autoridades responsáveis e evitar que o mosquito se espalhe, protegendo 
+                            <p>Sua denúncia é fundamental. Com ela, podemos acionar as autoridades responsáveis e evitar que o mosquito se espalhe, protegendo
                                 sua família, seus vizinhos e toda a comunidade.
-                            <br /><br />
+                                <br /><br />
                                 💡 Juntos, somos mais fortes contra a dengue. Faça sua parte, denuncie e compartilhe!
                             </p>
                         </div>
@@ -139,4 +149,4 @@ const Home: React.FC = () => {
         </>
     )
 }
-export default Home
+export default Home;

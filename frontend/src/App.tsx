@@ -5,10 +5,14 @@ import Login from './pages/Login'
 import Registro from './pages/Registro'
 import Perfil from './pages/Perfil'
 import Denuncias from './pages/Denucias'
-import './styles/style.css'
+import RotaProtegida from './components/RotaProtegida'
+import EsqueceuSenha from './pages/EsqueceuSenha'
+import "../src/styles/style.css"
 
-function App() {
 
+
+// function App() {
+  const App: React.FC = () => {
   return (
     <>
       <Routes>
@@ -16,10 +20,12 @@ function App() {
         <Route path='login' element={<Login />} />
         <Route path='registro' element={<Registro />} />
         <Route path='perfil' element={<Perfil />} />
-        <Route path='denuncia' element={<Denuncias />} />
+        <Route path='denuncia' element={<RotaProtegida> <Denuncias /> </RotaProtegida>} />
+        <Route path="/esqueci-senha" element={<EsqueceuSenha />} />
       </Routes>
     </>
   )
 }
+
 
 export default App
