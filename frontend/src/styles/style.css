@@ -291,6 +291,7 @@ p{
 .botao-registro {
     color: #fff;
     margin-top: 20px;
+    text-align: center;
 }
 
 .botao-registro:hover {
@@ -336,20 +337,6 @@ button{
 
 }
 
-/* ESTILO ESPECIFICO PARA O CAMPO NOME */
-/* .registro>input[name="nome"] {
-    background-color: #ffffff;
-    border: 2px solid #184E77;
-    font-size: 1rem;
-    color: #184E77;
-} */
-
-/* .registro>input[name="nome"]:focus {
-    outline: none;
-    border-color: #D9ED92;
-    box-shadow: 0 0 5px rgba(217, 237, 146, 0.5);
-} */
-
 .input-registro:focus{
     outline: none;
     border-color: #D9ED92;
@@ -394,8 +381,9 @@ button{
     /* justify-content: flex-start; */
     flex-direction: column;
     padding-top: 4rem;
-    border-radius: 40px;
+    border-radius: 20px;
     color: #fff;
+    border: 1px solid black;
 }
 
 .authentication>input {
@@ -404,6 +392,7 @@ button{
     width: 13rem;
     height: 1.5rem;
     margin-top: 0.5rem;
+    border: none;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -413,11 +402,13 @@ button{
     width: 4rem;
     margin-bottom: 11.5px;
     background-color: #D9ED92;
+    border: none;
 }
 
 .authentication>button:hover {
-    color: grey;
-    transition: 1s;
+    color: rgb(7, 0, 0);
+    height: 1.7rem;
+    width: 4.1rem;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
@@ -449,7 +440,11 @@ button{
     color: rgb(5, 0, 0);
     width: 2rem;
     height: 2rem;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12)
+     0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17)
+     0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
 }
 
 .close-modal:hover{
@@ -458,6 +453,9 @@ button{
     background-color: #81b7ee;
     color: rgb(14, 1, 1);
     border: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12)
+     0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17)
+     0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .login-button {
     background-color: transparent;
@@ -465,6 +463,7 @@ button{
     color: aliceblue;
     border: none;
     cursor: pointer;
+    
 }
 
 
@@ -590,3 +589,22 @@ button{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
+/*------------------POPUPS---------------------------*/
+
+.popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #eb5656;
+    padding: 15px 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .popup.show {
+    opacity: 1;
+  }

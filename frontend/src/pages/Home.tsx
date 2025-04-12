@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Modal from "react-modal";
 import { Typewriter } from 'react-simple-typewriter';
+import Popups from '../components/PopUp';
 
 Modal.setAppElement('#root');
 
@@ -37,6 +38,7 @@ const Home: React.FC = () => {
 
     return (
         <>
+            <Popups />
             <Header />
             <div className='container-home'>
                 <div className="boas-vindas">
