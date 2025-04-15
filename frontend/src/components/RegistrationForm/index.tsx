@@ -108,6 +108,8 @@ function RegistrationForm() {
     }
   }
 
+  
+
 
   return (
     <div className="registro">
@@ -119,15 +121,28 @@ function RegistrationForm() {
         id="nome"
         placeholder="Digite seu nome completo"
         value={nome}
-        onChange={(e) => setNome(e.target.value)}
+        //onChange={(e) => setNome(e.target.value)}
+        onChange={(e) => {
+          const textoOriginal = e.target.value;
+          const textoFormatado = textoOriginal
+            .toLowerCase()
+            .replace(/\b\w/g, (char) => char.toUpperCase());
+      
+          setNome(textoFormatado);
+        }}
       />
+      
   
       <label htmlFor="dataNasc">Data de Nascimento</label>
       <input
         className="input-registro"
-        type="date"
+        type="text"
         name="dataNasc"
         id="dataNasc"
+        placeholder="DD/MM/AAAA"
+        maxLength={10}
+        value={dataNasc}
+        onChange={formatarDataNascimento}
       />
   
       <label htmlFor="email">E-mail</label>
@@ -148,7 +163,7 @@ function RegistrationForm() {
         type="text"
         name="cpf"
         id="cpf"
-        placeholder="Digite o CPF. Apenas Números"
+        placeholder="XXX.XXX.XXX-XX"
         maxLength={14}
         value={cpf}
         onChange={formatarCPF}
@@ -160,7 +175,7 @@ function RegistrationForm() {
         type="tel"
         name="celular"
         id="celular"
-        placeholder="Informe seu número de celular"
+        placeholder="(XX) XXXXX-XXXX"
         maxLength={15}
         value={celular}
         onChange={formatarCelular}
