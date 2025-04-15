@@ -19,11 +19,3 @@ const RotaProtegida: React.FC<RotaProtegidaProps> = ({ children }) => {
   };
   
   export default RotaProtegida;
-
-// const RotaProtegida: React.FC<RotaProtegidaProps> = ({ children }) => {
-//   const token = localStorage.getItem('token');
-
-//   return token ? <>{children}</> : <Navigate to="/login" />;
-// };
-
-// export default RotaProtegida;
