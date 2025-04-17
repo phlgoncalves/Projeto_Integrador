@@ -7,6 +7,7 @@ import Perfil from './pages/Perfil'
 import Denuncias from './pages/Denucias'
 import RotaProtegida from './components/RotaProtegida'
 import EsqueceuSenha from './pages/EsqueceuSenha'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "../src/styles/style.css"
 
 
