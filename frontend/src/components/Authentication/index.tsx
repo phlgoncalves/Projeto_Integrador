@@ -15,33 +15,68 @@ function Authentication() {
     setfSenha(e.target.value);
   };
 
+  const isDevMode = true;
 
   const RealizarLogin = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/usuarios/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: fUser,
-          senha: fSenha
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Credenciais inválidas');
+    if (isDevMode) {
+      // Código simulado
+      if (fUser === 'admin@email.com' && fSenha === '12345') {
+        localStorage.setItem('token', 'fake-token-123456');
+        alert('Login simulado!');
+        navigate('/denuncia');
+      } else {
+        setmsgApi('Usuário ou senha inválidos.');
       }
-
-      const data = await response.json();
-      localStorage.setItem('token', data.access_token);
-      alert('Login bem-sucedido!');
-      navigate('/denuncia');
-    } catch (error) {
-      setmsgApi('Usuário ou senha inválidos.');
-      console.error('Erro ao fazer login:', error);
+    } else {
+      // Chamada real para API
+      try {
+        const response = await fetch('http://localhost:3000/usuarios/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: fUser, senha: fSenha })
+        });
+  
+        if (!response.ok) throw new Error('Credenciais inválidas');
+  
+        const data = await response.json();
+        localStorage.setItem('token', data.access_token);
+        alert('Login bem-sucedido!');
+        navigate('/denuncia');
+      } catch (error) {
+        setmsgApi('Usuário ou senha inválidos.');
+        console.error('Erro ao fazer login:', error);
+      }
     }
   };
+
+  // const RealizarLogin = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3000/usuarios/login', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         email: fUser,
+  //         senha: fSenha
+  //       })
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error('Credenciais inválidas');
+  //     }
+
+  //     const data = await response.json();
+  //     localStorage.setItem('token', data.access_token);
+  //     alert('Login bem-sucedido!');
+  //     navigate('/denuncia');
+  //   } catch (error) {
+  //     setmsgApi('Usuário ou senha inválidos.');
+  //     console.error('Erro ao fazer login:', error);
+  //   }
+  // };
 
   const handleLoginClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
