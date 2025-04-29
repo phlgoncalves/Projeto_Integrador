@@ -41,11 +41,7 @@ const Home: React.FC = () => {
             navigate('/login');
         }
     };
-    // Navega para a página de destino
-    // const handleDenuncia = () => {
-    //     navigate('denuncia');
-    // }
-
+  
     return (
         <>
             <Popups />
@@ -75,7 +71,7 @@ const Home: React.FC = () => {
                         <br /><br /><br />
                         <div className='numero-denuncias'>
                             <Typewriter
-                                words={['Bauru registrou 2.043 casos confirmados em 2025!']}
+                                words={['Bauru registra 7.750 casos confirmados e 8 mortes em 2025!']}
                                 loop={0}
                                 cursor
                                 cursorStyle='_'
