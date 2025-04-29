@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { api } from "../../api";
 
 function Authentication() {
   const [fUser, setfUser] = useState('');
@@ -15,72 +16,52 @@ function Authentication() {
     setfSenha(e.target.value);
   };
 
-  const isDevMode = true;
-
-  const RealizarLogin = async () => {
-    if (isDevMode) {
-      // Código simulado
-      if (fUser === 'admin@email.com' && fSenha === '12345') {
-        localStorage.setItem('token', 'fake-token-123456');
-        alert('Login simulado!');
-        navigate('/denuncia');
-      } else {
-        setmsgApi('Usuário ou senha inválidos.');
-      }
-    } else {
-      // Chamada real para API
-      try {
-        const response = await fetch('http://localhost:3000/usuarios/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email: fUser, senha: fSenha })
-        });
-  
-        if (!response.ok) throw new Error('Credenciais inválidas');
-  
-        const data = await response.json();
-        localStorage.setItem('token', data.access_token);
-        alert('Login bem-sucedido!');
-        navigate('/denuncia');
-      } catch (error) {
-        setmsgApi('Usuário ou senha inválidos.');
-        console.error('Erro ao fazer login:', error);
-      }
-    }
-  };
+  // const isDevMode = true;
 
   // const RealizarLogin = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3000/usuarios/login', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         email: fUser,
-  //         senha: fSenha
-  //       })
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Credenciais inválidas');
+  //   if (isDevMode) {
+  //     // Código simulado
+  //     if (fUser === 'admin@email.com' && fSenha === '12345') {
+  //       localStorage.setItem('token', 'fake-token-123456');
+  //       alert('Login simulado!');
+  //       navigate('/denuncia');
+  //     } else {
+  //       setmsgApi('Usuário ou senha inválidos.');
   //     }
+  //   } else {
+  //     // Chamada real para API
+  //     try {
+  //       const response = await fetch('http://localhost:3000/usuarios/login', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify({ email: fUser, senha: fSenha })
+  //       });
 
-  //     const data = await response.json();
-  //     localStorage.setItem('token', data.access_token);
-  //     alert('Login bem-sucedido!');
-  //     navigate('/denuncia');
-  //   } catch (error) {
-  //     setmsgApi('Usuário ou senha inválidos.');
-  //     console.error('Erro ao fazer login:', error);
+  //       if (!response.ok) throw new Error('Credenciais inválidas');
+
+  //       const data = await response.json();
+  //       localStorage.setItem('token', data.access_token);
+  //       alert('Login bem-sucedido!');
+  //       navigate('/denuncia');
+  //     } catch (error) {
+  //       setmsgApi('Usuário ou senha inválidos.');
+  //       console.error('Erro ao fazer login:', error);
+  //     }
   //   }
   // };
 
-  const handleLoginClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    await RealizarLogin();
+  const RealizarLogin = async () => {
+    try {
+      const data = await api.Logar(fUser, fSenha);
+      localStorage.setItem('token', data.access_token);
+      alert('Login bem-sucedido!');
+      navigate('/denuncia');
+    } catch (error) {
+      setmsgApi('Usuário ou senha inválidos.');
+      console.error('Erro ao fazer login:', error);
+    }
   };
 
   return (
@@ -89,8 +70,6 @@ function Authentication() {
         <label>Email</label>
         <input
           type="email"
-          name="email"
-          id="email"
           onChange={handleAddEmail}
           required
         />
@@ -98,8 +77,6 @@ function Authentication() {
         <label>Senha</label>
         <input
           type="password"
-          name="senha"
-          id="senha"
           onChange={handleAddSenha}
           required
         />
@@ -107,7 +84,10 @@ function Authentication() {
         <button
           type="submit"
           className="button-login"
-          onClick={(e) => handleLoginClick(e)}
+          onClick={(e) => {
+            e.preventDefault();
+            RealizarLogin();
+          }}
         >
           Entrar
         </button>
@@ -122,7 +102,7 @@ function Authentication() {
           <Link to={'/esqueci-senha'} className="botao-registro">Esqueci minha senha!</Link>
         </div>
       </form>
-    </div>
+    </div >
   );
 }
 

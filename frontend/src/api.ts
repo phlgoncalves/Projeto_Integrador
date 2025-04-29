@@ -98,27 +98,20 @@ export const api = {
         let json = await response.json();
         return json;
     },
+
     Logar: async (email: string, senha: string) => {
-        {
-            let response = await fetch('http://localhost:3000/usuarios/login',
-                {
-                    method: 'POST',
-                    body: JSON.stringify
-                        ({
-                            email,
-                            senha
-                        }),
-                    headers: {
-                        'Content-Type': 'application/json; charset-utf-8'
-                    }
-                }
-            );
-            let json = await response.json();
-
-            console.log(json);
-            return json;
-
+        const response = await fetch('http://localhost:3000/usuarios/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify({ email, senha })
+        });
+    
+        if (!response.ok) {
+          throw new Error('Falha no login');
         }
-    }
-
-}
+    
+        return await response.json();
+      }
+    };
