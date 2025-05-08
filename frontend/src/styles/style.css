@@ -74,6 +74,7 @@ a:hover {
   color: black;
 }
 
+/* =================== HOME =================== */
 .container-home {
   display: flex;
   justify-content: center;
@@ -229,10 +230,12 @@ p {
     margin-top: 10px;
     width: 6rem;
     text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.30) 0px 19px 38px, rgba(0, 0, 0, 0.30) 0px 8px 12px;
   }
   
   .button-card:hover {
     background-color: #45a049;
+    box-shadow: rgba(0, 0, 0, 0.30) 0px 19px 38px, rgba(0, 0, 0, 0.30) 0px 8px 12px;
   }
   
   .container-btnDenunciaHome {
@@ -657,11 +660,10 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
       background: #ffffff;
       padding: 2rem 3rem;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: rgba(230, 225, 225, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
       text-align: center;
       width: 100%;
       max-width: 450px;
-      box-shadow: rgba(230, 225, 225, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   }
   
   .perfil-card h2 {
@@ -701,6 +703,49 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
   
   .editar-btn:hover {
       background-color: #16a34a;
+  }
+  
+  /* Tabela */
+  .perfil-tabela {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      text-align: left;
+  }
+  
+  .perfil-tabela th,
+  .perfil-tabela td {
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+  }
+  
+  .perfil-tabela th {
+      background-color: #1e3a8a;
+      color: white;
+      width: 40%;
+      font-weight: 600;
+  }
+  
+  .perfil-tabela td {
+      background-color: #f9f9f9;
+      color: #333;
+      word-break: break-word;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 480px) {
+      .perfil-card {
+          padding: 1.5rem 1.5rem;
+      }
+  
+      .perfil-info input {
+          font-size: 0.9rem;
+      }
+  
+      .editar-btn {
+          font-size: 0.9rem;
+      }
   }
   
 

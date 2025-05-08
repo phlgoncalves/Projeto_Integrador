@@ -1,57 +1,3 @@
-// import { useEffect, useState } from 'react';
-// import '../styles/style.css';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-
-// interface Usuario {
-//     nome: string;
-//     email: string;
-//     dataNascimento: string;
-//     cpf: string;
-//     celular: string;
-//     cep: string;
-// }
-
-// export default function Perfil() {
-//     const [usuario, setUsuario] = useState<Usuario | null>(null);
-
-//     useEffect(() => {
-//         //  chamada a API fake
-//         const usuarioExemplo: Usuario = {
-//             nome: 'João da Silva',
-//             email: 'joao@gmail.com',
-//             dataNascimento: '1990-01-01',
-//             cpf: '123.456.789-00',
-//             celular: '(11) 91234-5678',
-//             cep: '12345-678',
-//         };
-//         setUsuario(usuarioExemplo);
-//     }, []);
-
-//     if (!usuario) return <p>Carregando perfil...</p>;
-
-//     return (
-//         <>
-//             <Header />
-//             <div className="perfil-container">
-//                 <h2>Meu Perfil</h2>
-//                 <div className="perfil-card">
-//                     <p><strong>Nome:</strong> {usuario.nome}</p>
-//                     <p><strong>Email:</strong> {usuario.email}</p>
-//                     <p><strong>Data de Nascimento:</strong> {usuario.dataNascimento}</p>
-//                     <p><strong>CPF:</strong> {usuario.cpf}</p>
-//                     <p><strong>Celular:</strong> {usuario.celular}</p>
-//                     <p><strong>CEP:</strong> {usuario.cep}</p>
-//                 </div>
-//                 <button className="editar-btn">Editar Perfil</button>
-//             </div>
-//             <Footer />
-//         </>
-//     );
-// }
-
-
-
 import { useEffect, useState } from 'react';
 import '../styles/style.css';
 import Header from '../components/Header';
@@ -156,14 +102,34 @@ export default function Perfil() {
                             />
                         </div>
                     ) : (
-                        <div className="perfil-info">
-                            <p><strong>Nome:</strong> {usuario.nome}</p>
-                            <p><strong>Email:</strong> {usuario.email}</p>
-                            <p><strong>Data de Nascimento:</strong> {usuario.dataNascimento}</p>
-                            <p><strong>CPF:</strong> {usuario.cpf}</p>
-                            <p><strong>Celular:</strong> {usuario.celular}</p>
-                            <p><strong>CEP:</strong> {usuario.cep}</p>
-                        </div>
+                        <table className="perfil-tabela">
+                            <tbody>
+                                <tr>
+                                    <th>Nome:</th>
+                                    <td>{usuario.nome}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td>{usuario.email}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data de Nascimento:</th>
+                                    <td>{usuario.dataNascimento}</td>
+                                </tr>
+                                <tr>
+                                    <th>CPF:</th>
+                                    <td>{usuario.cpf}</td>
+                                </tr>
+                                <tr>
+                                    <th>Celular:</th>
+                                    <td>{usuario.celular}</td>
+                                </tr>
+                                <tr>
+                                    <th>CEP:</th>
+                                    <td>{usuario.cep}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     )}
 
                     {editando ? (
