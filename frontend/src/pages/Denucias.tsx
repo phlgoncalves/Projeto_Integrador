@@ -1,93 +1,8 @@
-// import { useState } from "react";
-// import Footer from "../components/Footer";
-// import Header from "../components/Header";
-
-// function Denuncias() {
-
-//     const [isChecked, setIsChecked] = useState(true);
-  
-//     const handleChange = () => {
-//       setIsChecked(!isChecked);
-//     }
-
-//   return (
-//     <>
-//       <Header />
-//       <div className="container-denuncias">
-//         <div className="escolha-arquivo">
-//           <input
-//             type="file"
-//             id="foto"
-//             name="foto"
-//             accept="image/*"
-//             // onChange={handleFileChange}
-//             required
-//           />
-//         </div>
-
-//         <br />
-//         <br />
-
-//         <label className="descricao">
-//           Descriçao
-//           <br />
-//           <textarea
-//             placeholder="Descreva sua Denuncia!"
-//             name=""
-//             id=""
-//             cols={30}
-//             rows={8}
-//           ></textarea>
-//         </label>
-
-//         <div className="denuncia-end">
-//           Cep: <br />
-//           <input
-//             className="cep-input"
-//             type="text"
-//             placeholder="Digite um cep "
-//           />
-//           Complemento: <br /><br />
-//           <input className="rua-input" type="text" placeholder="Rua" />
-          
-//           Numero: <br />
-//           <input className="numero-input" type="text" placeholder="Numero" />
-          
-//            Denuncia :
-//            <br />
-//             <div className="switch-container">
-                
-//                 <input
-//                   type="checkbox"
-//                   id="switch"
-//                   className="switch-input"
-//                   checked={isChecked}
-//                   onChange={handleChange}
-//                 />
-//                   <label htmlFor="switch" className="switch-label">
-//                     {isChecked ? 'Anônimo' : 'Público'}
-//                   </label>
-//             </div>
-//           <br />
-//           <button type="submit">Enviar</button>
-//           </div> 
-          
-        
-
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// }
-
-
-// export default Denuncias;
-
-
-
 import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { UsuarioLogadoContext } from "../contexts/contextAuth";
+import { useContext } from "react";
 
 function Denuncias() {
   const [isAnonimo, setIsAnonimo] = useState(true);
@@ -96,6 +11,8 @@ function Denuncias() {
   const [numero, setNumero] = useState('');
   const [descricao, setDescricao] = useState('');
   const [foto, setFoto] = useState<File | null>(null);
+
+  const UsuarioLogadoCtx = useContext(UsuarioLogadoContext);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -10,9 +10,8 @@ export class CriaDenunciaDto {
     description:
       'Esse campo vai ser utilizado como identificação da descrição: Terreno, casa abandonada, etc. ',
   })
-  descricao: string;
+  DESCRICAO: string;
 
-  // @IsArray()
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
@@ -20,7 +19,7 @@ export class CriaDenunciaDto {
     description:
       'Esse campo será responsável pela imagem da denúncia.',
   })
-  fotos: string;
+  FOTOS: string;
 
   @IsString()
   @IsNotEmpty()
@@ -29,7 +28,7 @@ export class CriaDenunciaDto {
     description:
       'Esse campo vai ser utilizado para informar CPF',
   })
-  cep: string;
+  CEP: string;
 
   @IsString()
   @IsNotEmpty()
@@ -38,7 +37,7 @@ export class CriaDenunciaDto {
     description:
       'Esse campo é utilizado para informar o complemento do lugar para denúncia para facilitar a localização',
   })
-  complemento: string;
+  COMPLEMENTO: string;
 
   @IsBoolean()
   @ApiProperty({
@@ -46,7 +45,7 @@ export class CriaDenunciaDto {
     description:
       'Se verdadeiro a denúncia não aparecerá com o nome do denunciador',
   })
-  anonimato: boolean;
+  ANONIMATO: boolean;
 
   @IsNotEmpty()
   @ApiProperty({
@@ -54,5 +53,5 @@ export class CriaDenunciaDto {
     description:
       'ID do usuário que está realizando a denúncia.',
   })
-  usuarioId: string;
+  USUARIOID: string;
 }

@@ -1,11 +1,11 @@
 export class ListaDenunciaDTO {
   constructor(
-    readonly id: string,
-    readonly descricao: string,
-    readonly fotos: string,
-    readonly cep: string,
-    readonly endereco: string,
-    readonly complemento: string,
-    readonly usuario: string,
+    readonly ID: string,
+    readonly DESCRICAO: string,
+    readonly FOTOS: string,
+    readonly CEP: string,
+    readonly ENDERECO: string,
+    readonly COMPLEMENTO: string,
+    readonly USUARIO: string,
   ) {}
 }
