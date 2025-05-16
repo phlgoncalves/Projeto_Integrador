@@ -66,11 +66,11 @@ export class DenunciasService {
     atualizarDenuncia(id: string, dados: AlteraDenunciaDto) {
         const denuncia = this.buscarPorId(id);
 
-        denuncia.descricao = dados.descricao;
-        denuncia.fotos = dados.fotos;
-        denuncia.cep = dados.cep;
-        denuncia.complemento = dados.complemento;
-        denuncia.anonimato = dados.anonimato;
+        denuncia.descricao = dados.DESCRICAO;
+        denuncia.fotos = dados.FOTOS;
+        denuncia.cep = dados.CEP;
+        denuncia.complemento = dados.COMPLEMENTO;
+        denuncia.anonimato = dados.ANONIMATO;
 
         return {
             mensagem: 'Denúncia atualizada com sucesso',

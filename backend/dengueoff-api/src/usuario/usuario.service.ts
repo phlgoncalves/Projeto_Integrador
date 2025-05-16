@@ -1,9 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { UsuarioEntity } from './usuario.entity';
 
 @Injectable()
 export class UsuarioService {
-  #usuarios: UsuarioEntity[] = [];
+  constructor(
+    @Inject('USUARIO_REPOSITORY')
+  ){}
+  /*#usuarios: UsuarioEntity[] = [];
 
   AdicionarUsuario(usuario: UsuarioEntity) {
     this.#usuarios.push(usuario);
@@ -83,5 +86,5 @@ export class UsuarioService {
   async findById(id: string): Promise<UsuarioEntity> {
     console.log('Lista de usuários:', this.#usuarios);
     return this.buscaPorID(id);
-  }
+  } */
 }
