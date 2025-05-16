@@ -10,7 +10,7 @@ export class AlteraDenunciaDto {
     description:
       'Esse campo é opcional na alteração e vai ser utilizado para alterar a identificação da descrição: Terreno, casa abandonada, etc. ',
   })
-  descricao: string;
+  DESCRICAO: string;
 
   @IsArray()
   @IsOptional()
@@ -19,7 +19,7 @@ export class AlteraDenunciaDto {
     description:
       'Esse campo é opcional na alteração e será responsável pelas imagens da denúncia.',
   })
-  fotos: string;
+  FOTOS: string;
 
   @IsString()
   @IsOptional()
@@ -28,7 +28,7 @@ export class AlteraDenunciaDto {
     description:
       'Esse campo é opcional na alteração e vai ser utilizado para alterar CPF',
   })
-  cep: string;
+  CEP: string;
 
   @IsString()
   @IsOptional()
@@ -37,7 +37,7 @@ export class AlteraDenunciaDto {
     description:
       'Campo opcional na alteração do complemento do lugar para denúncia para facilitar a localização',
   })
-  complemento: string;
+  COMPLEMENTO: string;
 
   @IsBoolean()
   @IsOptional()
@@ -46,5 +46,5 @@ export class AlteraDenunciaDto {
     description:
       'Se verdadeira a denúncia não aparecerá com o nome do denunciador',
   })
-  anonimato: boolean;
+  ANONIMATO: boolean;
 }

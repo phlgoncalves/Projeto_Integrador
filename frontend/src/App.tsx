@@ -8,6 +8,7 @@ import Denuncias from './pages/Denucias'
 import RotaProtegida from './components/RotaProtegida'
 import EsqueceuSenha from './pages/EsqueceuSenha'
 import "../src/styles/style.css"
+import { UsuarioLogadoProvider } from './contexts/contextAuth'
 
 
 
@@ -15,6 +16,7 @@ import "../src/styles/style.css"
   const App: React.FC = () => {
   return (
     <>
+    <UsuarioLogadoProvider>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='login' element={<Login />} />
@@ -23,6 +25,7 @@ import "../src/styles/style.css"
         <Route path='denuncia' element={<RotaProtegida> <Denuncias /> </RotaProtegida>} />
         <Route path="/esqueci-senha" element={<EsqueceuSenha />} />
       </Routes>
+      </UsuarioLogadoProvider>
     </>
   )
 }

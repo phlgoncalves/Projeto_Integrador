@@ -7,12 +7,12 @@ export class LoginUsuarioDto {
     example: 'peedro@gmail.com',
     description: 'Esse é para validação de email de Login',
   })
-  email: string;
+  EMAIL: string;
 
   @MinLength(6, { message: 'senha deve ter no minimo 6 digitos' })
   @ApiProperty({
     example: 'senhaForte483',
     description: 'Esse campo é para validação da senha',
   })
-  senha: string;
+  SENHA: string;
 }
