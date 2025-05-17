@@ -5,3 +5,9 @@ export class listaUsuarioDTO {
     readonly EMAIL: string,
   ) {}
 }
+
+export class ListagemUsuariosDTO{
+    constructor(
+        readonly usuario: listaUsuarioDTO[],
+    ){}
+}
