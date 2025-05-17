@@ -6,9 +6,10 @@ import { UsuarioService } from 'src/usuario/usuario.service';
 import { UsuarioModule } from 'src/usuario/usuario.module';
 import { denunciaProviders } from './denuncia.providers';
 import { usuarioProviders } from 'src/usuario/usuario.providers';
+import { DatabaseModule } from 'src/database/database.module';
 
 @Module({
-  imports: [HttpModule, UsuarioModule],
+  imports: [DatabaseModule],
   controllers: [DenunciaController],
   providers: [DenunciasService, ...denunciaProviders, UsuarioService, ...usuarioProviders]
 })
