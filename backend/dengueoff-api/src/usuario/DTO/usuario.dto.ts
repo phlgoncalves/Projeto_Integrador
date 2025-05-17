@@ -30,7 +30,7 @@ export class criaUsuarioDTO {
     description:
       'Esse campo identifica a idade do usuário, deve ser prenchido com a idade correta',
   })
-  IDADE: Number;
+  DATANASC: string;
 
   @IsEmail(undefined, { message: 'email é inválido' })
   @EmailUnico({ message: 'Email já cadastrado, tente novamente' })

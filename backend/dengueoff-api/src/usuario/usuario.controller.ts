@@ -1,158 +1,68 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { criaUsuarioDTO } from './DTO/usuario.dto';
 
-import { v4 as uuid } from 'uuid';
-import { UsuarioEntity } from './usuario.entity';
-import { ListaUsuarioDTO } from './DTO/consulta.dto';
 import { alteraUsuarioDTO } from './DTO/altera.usuario';
-import { LoginUsuarioDto } from './DTO/loginUsuario.dto';
+import { loginUsuarioDto } from './DTO/loginUsuario.dto';
 
-import { ApiBadRequestResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { HttpService } from '@nestjs/axios';
-import { lastValueFrom, map } from 'rxjs';
+import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { RetornoCadastroDTO } from 'src/dto/retorno.dto';
+import { RetornoUsuarioDTO } from './DTO/retornoUsuario.dto';
+import { USUARIO } from './usuario.entity';
 
 @ApiTags('usuarios')
 @Controller('/usuarios')
 export class UsuarioController {
-  constructor(private classeUsuarioService: UsuarioService, private httpService: HttpService) { }
-
-  @ApiResponse({ status: 201, description: 'Retorna que houve sucesso ao criar um usuário' })
+  constructor(private classeUsuarioService: UsuarioService) { }
   @Post()
-  @ApiResponse({
-    status: 201,
-    description: 'Retorna que houve sucesso ao criar um usuário',
-  })
-  @ApiBadRequestResponse({ description: 'Retorna que algum dado está errado' })
-  async criaUsuario(@Body() dadosUsuario: criaUsuarioDTO) {
-    var msgError = ''
-    try {
-      var retornoCep = await lastValueFrom(this.httpService
-        .get(`https://viacep.com.br/ws/${dadosUsuario.cep}/json/`)
-        .pipe(
-          map((response) => response.data)
-        ))
-      if (retornoCep.error == 'true') {
-        throw new Error('CEP não encontrado')
-      }
-    } catch (error) {
-      msgError = 'Erro ao consultar o CEP, informa um CEP valido'
-      return {
-        message: msgError,
-        status: 'Erro no cadastro do usuário'
-      }
-    }
-    const novoUsuario = new UsuarioEntity(
-      uuid(),
-      dadosUsuario.nome,
-      dadosUsuario.cpf,
-      dadosUsuario.idade,
-      dadosUsuario.email,
-      dadosUsuario.cep,
-      retornoCep.logradouro ? retornoCep.logradouro : '',
-      dadosUsuario.complemento,
-      retornoCep.localidade,
-      dadosUsuario.telefone,
-      dadosUsuario.senha,
-    );
-
-    this.classeUsuarioService.AdicionarUsuario(novoUsuario);
-
-    const usuario = {
-      dadosUsuario: novoUsuario,
-      status: 'Usuario Criado',
-    };
-
-    return usuario;
-  }
-
-  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na requisição' })
-  @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado' })
-  @Get()
-  listaUsuarios() {
-    this.classeUsuarioService.Usuarios;
-
-    const usuariosListados = this.classeUsuarioService.Usuarios;
-    const listaRetorno = usuariosListados.map(
-      (usuario) => new ListaUsuarioDTO(usuario.id, usuario.nome, usuario.email),
-    );
-
-    return listaRetorno;
-  }
-
-  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na requisição' })
-  @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado' })
-  @Put('/:id')
-  async atualizaUsuario(
-    @Param('id') id: string,
-    @Body() novosDados: alteraUsuarioDTO,
-  ) {
-    var msgError = ''
-    if (novosDados.cep) {
-      try {
-        var retornoCep = await lastValueFrom(this.httpService
-          .get(`https://viacep.com.br/ws/${novosDados.cep}/json/`)
-          .pipe(
-            map((response) => response.data)
-          ))
-        if (retornoCep.erro) {
-          retornoCep = null
-          throw new Error('CEP não encontrado')
-        }
-      } catch (error) {
-        msgError = ` | Erro ao buscar CEP - ${error.message}`
-      }
-
-      var dadosEndereco = {
-        endereco: retornoCep ? retornoCep.logradouro : '',
-        cidade: retornoCep ? retornoCep.localidade : '',
-        cep: novosDados.cep
-      }
-
-      await this.classeUsuarioService.atualizaUsuario(id, dadosEndereco)
-    }
-    
-    const usuarioAtualizado = this.classeUsuarioService.atualizaUsuario(
-      id,
-      novosDados,
-    );
-
-    return {
-      usuario: usuarioAtualizado,
-      message: 'Usuario Atualizado',
-    };
-  }
-
-  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na requisição' })
-  @ApiResponse({ status: 500, description: 'Retorna que o usuário não foi encontrado' })
-  @Delete('/:id')
-  removeUsuario(@Param('id') id: string) {
-    const usuarioRemovido = this.classeUsuarioService.removeUsuario(id);
-
-    return {
-      usuario: usuarioRemovido,
-      message: 'Usuario Removido',
-    };
+  @ApiCreatedResponse({ description: 'Retorna que houve sucesso na inclusão' })
+  @ApiResponse({ status: 500, description: 'Retorna que houve erro na inclusão.' })
+  @ApiResponse({ status: 400, description: 'Retorna que há algum dado inválido na requisição.' })
+  async criaUsuario(@Body() dadosUsuario: criaUsuarioDTO): Promise<RetornoCadastroDTO> {
+    return this.classeUsuarioService.inserir(dadosUsuario)
   }
 
   @Post('/login')
-  login(@Body() dadosLogin: LoginUsuarioDto) {
-    const login = this.classeUsuarioService.validarLogin(
-      dadosLogin.email,
-      dadosLogin.senha,
-    );
-    return {
-      status: login.login,
-      usuario: login.login ? login.usuario : null,
-      message: login.login ? 'login efetuado' : 'usuario ou senha inválidos',
-    };
+  @ApiResponse({ status: 201, description: 'Retorna que houve sucesso na consulta' })
+  @ApiResponse({ status: 400, description: 'Retorna que há algum dado inválido na requisição.' })
+  async fazerLogin(@Body() dadosLogin: loginUsuarioDto) {
+    var retornoLogin = await this.classeUsuarioService.Login(dadosLogin.EMAIL, dadosLogin.SENHA)
+
+    var retorno = new RetornoUsuarioDTO(retornoLogin.status ? 'Login efetuado, sucesso' : 'Email ou senha invalidos!', retornoLogin.usuario);
+
+    return retorno;
+
+  }
+
+  @Put('/:id')
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na alteração' })
+  @ApiResponse({ status: 500, description: 'Retorna que houve erro na alteração.' })
+  @ApiResponse({ status: 400, description: 'Retorna que há algum dado inválido na requisição.' })
+  async alteraUsuario(@Body() dadosNovos: alteraUsuarioDTO, @Param('id') id: string) {
+    return this.classeUsuarioService.alterar(id, dadosNovos)
+  }
+
+
+  @Delete('/:id')
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na exclusão' })
+  @ApiResponse({ status: 500, description: 'Retorna que houve erro na exclusão.' })
+  async removeUsuario(@Param('id') id: string) {
+    return this.classeUsuarioService.remover(id);
+
+  }
+
+
+  @Get('ID/:id')
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na consulta' })
+  @ApiResponse({ status: 500, description: 'Retorna que houve erro na consulta.' })
+  async retornaUsuarioId(@Param('ID') ID: string): Promise<USUARIO> {
+    return this.classeUsuarioService.localizarID(ID);
+  }
+
+  @Get('')
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na consulta' })
+  @ApiResponse({ status: 500, description: 'Retorna que houve erro na consulta.' })
+  async listar(): Promise<USUARIO[]> {
+    return this.classeUsuarioService.listar();
   }
 }

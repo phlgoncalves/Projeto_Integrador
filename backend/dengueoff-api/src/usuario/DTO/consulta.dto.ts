@@ -1,4 +1,4 @@
-export class ListaUsuarioDTO {
+export class listaUsuarioDTO {
   constructor(
     readonly ID: string,
     readonly NOME: string,
