@@ -4,7 +4,8 @@ export class ListaDenunciaDTO {
     readonly DESCRICAO: string,
     readonly FOTOS: string,
     readonly CEP: string,
-    readonly ENDERECO: string,
+    readonly RUA: string,
+    readonly NUMERO: string,
     readonly COMPLEMENTO: string,
     readonly USUARIO: string,
   ) {}

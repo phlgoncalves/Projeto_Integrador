@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { DENUNCIA } from 'src/denuncia/denuncia.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class USUARIO {
@@ -35,6 +36,9 @@ export class USUARIO {
 
   @Column({ length: 255 })
   SENHA: string;
+
+  @OneToMany(() => DENUNCIA, denuncia => denuncia.USUARIO)
+  denuncias: DENUNCIA[];
 
   trocaSenha(senha) {
     const saltOrRounds = 10;

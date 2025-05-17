@@ -30,6 +30,24 @@ export class CriaDenunciaDto {
   })
   CEP: string;
 
+   @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    example: 'Rua Sorocabana',
+    description:
+      'Esse campo vai ser utilizado para informar Rua',
+  })
+  RUA: string;
+
+   @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    example: '1-26',
+    description:
+      'Esse campo vai ser utilizado para informar numero da quadra',
+  })
+  NUMERO: string;
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty({

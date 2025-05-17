@@ -33,6 +33,25 @@ export class AlteraDenunciaDto {
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({
+    example: 'Rua Sorocabana',
+    description:
+      'Campo opcional na alteração do complemento do lugar para denúncia para facilitar a localização',
+  })
+  RUA: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: '1-26',
+    description:
+      'Campo opcional na alteração do complemento do lugar para denúncia para facilitar a localização',
+  })
+  NUMERO: string;
+
+
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
     example: 'próximo à praça',
     description:
       'Campo opcional na alteração do complemento do lugar para denúncia para facilitar a localização',

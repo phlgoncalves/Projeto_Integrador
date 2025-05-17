@@ -1,41 +1,49 @@
-import { UsuarioEntity } from "src/usuario/usuario.entity";
+import { USUARIO } from "src/usuario/usuario.entity";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
 
-export class DenunciaEntity {
-  id: string;
-  descricao: string;
-  fotos: string;
-  cep: string;
-  endereco: string;
-  complemento: string;
-  anonimato: boolean;
-  usuario: UsuarioEntity;
-  constructor(
-    id: string,
-    descricao: string,
-    fotos: string,
-    cep: string,
-    endereco: string,
-    complemento: string,
-    anonimato: boolean,
-    usuario: UsuarioEntity,
-  ) {
-    this.id = id;
-    this.descricao = descricao;
-    this.fotos = fotos;
-    this.cep = cep;
-    this.endereco = endereco;
-    this.complemento = complemento;
-    this.anonimato = anonimato;
-    this.usuario = usuario;
-  }
 
-  denuncia(): string {
-    const agora = new Date()
-    return this.descricao +
-      '\nEndereço: ' + this.endereco + (this.complemento ? ', ' + this.complemento : '') +
-      ' - CEP ' + this.cep +
-      '\nEmail: ' + this.usuario.email +
-      '\nFoto: ' + this.fotos +
-      '\n' + agora;
-  }
+@Entity()
+export class DENUNCIA {
+  @PrimaryColumn()
+  ID: string;
+
+  @Column({ length: 255 })
+  DESCRICAO: string;
+
+  @Column({ length: 255 })
+  FOTOS: string;
+
+  @Column({ length: 255 })
+  CEP: string;
+
+  @Column({ length: 255 })
+  RUA: string;
+
+  @Column({ length: 255 })
+  NUMERO: string;
+
+  @Column({ length: 255 })
+  COMPLEMENTO: string;
+
+  @Column()
+  ANONIMATO: boolean;
+
+
+  @ManyToOne(() => USUARIO, usuario => usuario.denuncias, {
+    onDelete: 'CASCADE',   // se o usuário for deletado, as denúncias também
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'IDUSUARIO', referencedColumnName: "ID" }) // cria coluna IDUSUARIO na tabela DENUNCIA
+  USUARIO: USUARIO;
 }
+
+// denuncia(): string {
+//   const agora = new Date()
+//   return this.descricao +
+//     '\nEndereço: ' + this.endereco + (this.complemento ? ', ' + this.complemento : '') +
+//     ' - CEP ' + this.cep +
+//     '\nEmail: ' + this.usuario.email +
+//     '\nFoto: ' + this.fotos +
+//     '\n' + agora;
+// }
+
