@@ -21,14 +21,14 @@ export class alteraUsuarioDTO {
   })
   NOME: string;
 
-  @IsInt()
+  @IsString()
   @IsOptional()
   @ApiPropertyOptional({
-    example: 32,
+    example: '1992-09-22',
     description:
-      'Esse campo identifica a idade do usuário, deve ser prenchido com a data de nascimento',
+      'Esse campo identifica a idade do usuário, deve ser prenchido com a idade correta',
   })
-  IDADE: Number;
+  DATANASC: string;
 
   @IsEmail(undefined, { message: 'email é inválido' })
   @EmailUnico({ message: 'Email já cadastrado, tente novamente' })
@@ -52,10 +52,34 @@ export class alteraUsuarioDTO {
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({
+    example: 'Rua Sorocabana',
+    description: 'Deve ser enviado uma rua valida'
+  })
+  RUA: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: '1-26',
+    description: 'Deve ser enviado um número valido'
+  })
+  NUMERO: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
     example: 'Apartamento 123',
     description: 'Deve ser informado o complemento do endereço'
   })
   COMPLEMENTO: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: 'Bauru',
+    description: 'Deve ser informado a cidade correta'
+  })
+  CIDADE: string;
 
   @IsString()
   @IsOptional()
