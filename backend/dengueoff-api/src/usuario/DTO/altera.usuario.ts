@@ -68,6 +68,14 @@ export class alteraUsuarioDTO {
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({
+    example: 'Santa Clara',
+    description: 'Deve ser enviado um bairro existente'
+  })
+  BAIRRO: string;
+
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
     example: 'Apartamento 123',
     description: 'Deve ser informado o complemento do endereço'
   })

@@ -63,6 +63,12 @@ export class criaUsuarioDTO {
   })
   NUMERO: string;
 
+  @IsString()
+  @ApiProperty({
+    example: 'Santa Clara',
+    description: 'Deve ser enviado um bairro existente'
+  })
+  BAIRRO: string;
 
   @IsString()
   @ApiProperty({

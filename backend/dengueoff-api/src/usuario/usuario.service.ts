@@ -24,6 +24,7 @@ export class UsuarioService {
     usuario.CEP = dados.CEP;
     usuario.RUA = dados.RUA;
     usuario.NUMERO = dados.NUMERO;
+    usuario.BAIRRO = dados.BAIRRO;
     usuario.CIDADE = dados.CIDADE;
     usuario.COMPLEMENTO = dados.COMPLEMENTO;
     usuario.TELEFONE = dados.TELEFONE;
@@ -91,11 +92,11 @@ export class UsuarioService {
     const query = this.usuarioRepository
       .createQueryBuilder('usuario')
       .where('usuario.EMAIL = :email', { email: emailNovo });
-  
+
     if (idIgnorar) {
       query.andWhere('usuario.ID != :id', { id: idIgnorar });
     }
-  
+
     const usuario = await query.getOne();
     return usuario == null;
   }

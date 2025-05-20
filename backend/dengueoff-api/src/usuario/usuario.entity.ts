@@ -27,6 +27,9 @@ export class USUARIO {
 
   @Column({ length: 255 })
   NUMERO: string;
+  
+  @Column({ length: 255 })
+  BAIRRO: string;
 
   @Column({ length: 255 })
   COMPLEMENTO: string;
