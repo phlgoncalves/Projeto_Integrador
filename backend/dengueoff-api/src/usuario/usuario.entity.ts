@@ -23,7 +23,10 @@ export class USUARIO {
   CEP: string;
 
   @Column({ length: 255 })
-  ENDERECO: string;
+  RUA: string;
+
+  @Column({ length: 255 })
+  NUMERO: string;
 
   @Column({ length: 255 })
   COMPLEMENTO: string;

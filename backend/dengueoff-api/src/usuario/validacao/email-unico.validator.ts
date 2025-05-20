@@ -11,11 +11,12 @@ import { UsuarioService } from '../usuario.service';
 @Injectable()
 @ValidatorConstraint({ async: true })
 export class EmailUnicoValidator implements ValidatorConstraintInterface {
-  constructor(private classeUsuarioService: UsuarioService) { }
+  constructor(private classeUsuarioService: UsuarioService) {}
 
-  async validate(value: any, validationArguments?: ValidationArguments): Promise<boolean> {
-    const validarEmail = await this.classeUsuarioService.validaEmail(value);
-    return !validarEmail;
+  async validate(value: any, args: ValidationArguments): Promise<boolean> {
+    const objeto = args.object as any;
+    const idIgnorar = objeto?.ID;
+    return this.classeUsuarioService.validaEmail(value, idIgnorar);
   }
 }
 

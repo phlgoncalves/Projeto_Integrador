@@ -21,7 +21,11 @@ export class UsuarioService {
     usuario.CPF = dados.CPF;
     usuario.DATANASC = dados.DATANASC;
     usuario.EMAIL = dados.EMAIL;
-    usuario.COMPLEMENTO = dados.CEP;
+    usuario.CEP = dados.CEP;
+    usuario.RUA = dados.RUA;
+    usuario.NUMERO = dados.NUMERO;
+    usuario.CIDADE = dados.CIDADE;
+    usuario.COMPLEMENTO = dados.COMPLEMENTO;
     usuario.TELEFONE = dados.TELEFONE;
     usuario.SENHA = dados.SENHA;
 
@@ -83,10 +87,17 @@ export class UsuarioService {
     };
   }
 
-  async validaEmail(emailNovo: string) {
-    const possivelUsuario = await this.localizarEmail(emailNovo)
-
-    return (possivelUsuario == null)
+  async validaEmail(emailNovo: string, idIgnorar?: string): Promise<boolean> {
+    const query = this.usuarioRepository
+      .createQueryBuilder('usuario')
+      .where('usuario.EMAIL = :email', { email: emailNovo });
+  
+    if (idIgnorar) {
+      query.andWhere('usuario.ID != :id', { id: idIgnorar });
+    }
+  
+    const usuario = await query.getOne();
+    return usuario == null;
   }
 
 

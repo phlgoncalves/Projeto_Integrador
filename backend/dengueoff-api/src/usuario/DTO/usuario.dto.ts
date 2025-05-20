@@ -24,9 +24,9 @@ export class criaUsuarioDTO {
   })
   CPF: string;
 
-  @IsInt()
+  @IsString()
   @ApiProperty({
-    example: 32,
+    example: '1992-09-22',
     description:
       'Esse campo identifica a idade do usuário, deve ser prenchido com a idade correta',
   })
@@ -49,6 +49,20 @@ export class criaUsuarioDTO {
   })
   CEP: string;
 
+  @IsString()
+  @ApiProperty({
+    example: 'Rua Sorocabana',
+    description: 'Deve ser enviado uma rua valida'
+  })
+  RUA: string;
+
+  @IsString()
+  @ApiProperty({
+    example: '1-26',
+    description: 'Deve ser enviado um número valido'
+  })
+  NUMERO: string;
+
 
   @IsString()
   @ApiProperty({
@@ -57,6 +71,12 @@ export class criaUsuarioDTO {
   })
   COMPLEMENTO: string;
 
+  @IsString()
+  @ApiProperty({
+    example: 'Apartamento 123',
+    description: 'Deve ser informado o complemento do endereço'
+  })
+  CIDADE: string;
 
   @IsString()
   @ApiProperty({
