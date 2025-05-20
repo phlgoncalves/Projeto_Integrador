@@ -192,6 +192,18 @@ function RegistrationForm() {
         value={cep}
         onChange={formatarCEP}
       />
+
+<label htmlFor="rua">Rua</label>
+      <input
+        className="input-registro"
+        type="text"
+        name="rua"
+        id="rua"
+        placeholder="XXXXX-XXX"
+        maxLength={10}
+        value={rua}
+        onChange={formatarCEP}
+      />
   
       <label htmlFor="senha">Senha</label>
       <input
