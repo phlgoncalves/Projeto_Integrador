@@ -8,7 +8,7 @@ function RegistrationForm() {
   const [celular, setCelular] = useState("");
   const [cep, setCep] = useState("");
   const [rua, setRua] = useState("");
-  const [numero, setNumero] = useState("");
+  const [numero] = useState("");
   const [bairro, setBairro] = useState("");
   const [cidade, setCidade] = useState("");
   const [senha, setSenha] = useState("");
@@ -78,7 +78,7 @@ function RegistrationForm() {
     return senha === confirSenha;
   };
 
-  const checkCEP = (e) => {
+  const checkCEP = (e: { target: { value: string } }) => {
     const cep = e.target.value.replace(/\D/g, "");
     if (cep.length !== 8) return;
 
@@ -151,7 +151,7 @@ function RegistrationForm() {
         id="nome"
         placeholder="Digite seu nome completo"
         value={nome}
-        //onChange={(e) => setNome(e.target.value)}
+        // onChange={(e) => setNome(e.target.value)}
         onChange={(e) => {
           const textoOriginal = e.target.value;
           const textoFormatado = textoOriginal

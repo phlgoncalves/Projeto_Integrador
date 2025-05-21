@@ -18,6 +18,7 @@
     "bootstrap": "^5.3.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "lucide-react": "^0.511.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",

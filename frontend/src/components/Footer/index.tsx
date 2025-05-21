@@ -2,7 +2,7 @@ function Footer() {
     return (
         <>
             <div className="container-footer">
-                <p> &copy; Dengue-off - 2025</p>
+                <p> &copy; Dengue-off. Todos os direitos reservados.</p>
             </div>
         </>
     )

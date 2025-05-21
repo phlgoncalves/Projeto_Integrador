@@ -14,8 +14,8 @@ function Header() {
 
 
   <nav className ="nav-links">
-    <a href="#quem-somos">Quem Somos</a>
-    <a href="#login">Login</a>
+    <a href="quem-somos">Quem Somos</a>
+    <a href="login">Login</a>
     <button id="btnDenunciaHeader">Fazer Denúncia</button>
   </nav>
 </header>
