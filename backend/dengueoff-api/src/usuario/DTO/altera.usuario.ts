@@ -31,7 +31,6 @@ export class alteraUsuarioDTO {
   DATANASC: string;
 
   @IsEmail(undefined, { message: 'email é inválido' })
-  @EmailUnico({ message: 'Email já cadastrado, tente novamente' })
   @IsOptional()
   @ApiPropertyOptional({
     example: 'pedro@gmail.com',

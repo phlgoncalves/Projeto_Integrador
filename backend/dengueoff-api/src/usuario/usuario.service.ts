@@ -28,7 +28,7 @@ export class UsuarioService {
     usuario.CIDADE = dados.CIDADE;
     usuario.COMPLEMENTO = dados.COMPLEMENTO;
     usuario.TELEFONE = dados.TELEFONE;
-    usuario.SENHA = dados.SENHA;
+    usuario.trocaSenha(dados.SENHA)
 
     return this.usuarioRepository.save(usuario)
       .then((result) => {
@@ -80,19 +80,32 @@ export class UsuarioService {
   }
 
   async Login(email: string, senha: string) {
-    const possivelUsuario = await this.localizarEmail(email)
+    try {
+      const possivelUsuario = await this.localizarEmail(email);
 
-    return {
-      usuario: possivelUsuario ? (possivelUsuario.login(senha) ? possivelUsuario : null) : null,
-      status: possivelUsuario ? possivelUsuario.login(senha) : false
-    };
+      if (!possivelUsuario) {
+        return { usuario: null, status: false };
+      }
+
+      const senhaValida = possivelUsuario.login(senha);
+
+      return {
+        usuario: senhaValida ? possivelUsuario : null,
+        status: senhaValida
+      };
+    } catch (error) {
+      return { usuario: null, status: false };
+    }
   }
 
-  async validaEmail(emailNovo: string) {
-    const possivelUsuario = await this.localizarEmail(emailNovo)
-
-    return (possivelUsuario == null)
-  } 
+  async validaEmail(emailNovo: string): Promise<boolean> {
+    try {
+      await this.localizarEmail(emailNovo);
+      return false;
+    } catch (error) {
+      return true;
+    }
+  }
 
 
   async remover(id: string): Promise<RetornoObjDTO> {
