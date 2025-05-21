@@ -9,7 +9,6 @@ import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RetornoCadastroDTO } from 'src/dto/retorno.dto';
 import { RetornoUsuarioDTO } from './DTO/retornoUsuario.dto';
 import { USUARIO } from './usuario.entity';
-import { ListagemUsuariosDTO, listaUsuarioDTO } from './DTO/consulta.dto';
 
 @ApiTags('usuarios')
 @Controller('/usuarios')
@@ -60,21 +59,10 @@ export class UsuarioController {
     return this.classeUsuarioService.localizarID(ID);
   }
 
-@Get()
-    @ApiResponse({status: 200, description:'Retorna que houve sucesso na consulta'})
-    async retornaUsuario(): Promise <ListagemUsuariosDTO>{
-        var usuariosListados = await this.classeUsuarioService.listar();
-        const ListaRetorno = usuariosListados.map(
-            usuario => new listaUsuarioDTO(
-                usuario.ID,
-                usuario.NOME,
-                usuario.EMAIL
-            )
-        );
-
-        const retorno = new ListagemUsuariosDTO(ListaRetorno);
-
-
-        return retorno
-    }
+  @Get('')
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na consulta' })
+  @ApiResponse({ status: 500, description: 'Retorna que houve erro na consulta.' })
+  async listar(): Promise<USUARIO[]> {
+    return this.classeUsuarioService.listar();
+  }
 }

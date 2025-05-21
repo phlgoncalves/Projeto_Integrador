@@ -88,18 +88,11 @@ export class UsuarioService {
     };
   }
 
-  async validaEmail(emailNovo: string, idIgnorar?: string): Promise<boolean> {
-    const query = this.usuarioRepository
-      .createQueryBuilder('usuario')
-      .where('usuario.EMAIL = :email', { email: emailNovo });
+  async validaEmail(emailNovo: string) {
+    const possivelUsuario = await this.localizarEmail(emailNovo)
 
-    if (idIgnorar) {
-      query.andWhere('usuario.ID != :id', { id: idIgnorar });
-    }
-
-    const usuario = await query.getOne();
-    return usuario == null;
-  }
+    return (possivelUsuario == null)
+  } 
 
 
   async remover(id: string): Promise<RetornoObjDTO> {
@@ -148,86 +141,3 @@ export class UsuarioService {
       });
   }
 }
-
-/*#usuarios: UsuarioEntity[] = [];
-
-AdicionarUsuario(usuario: UsuarioEntity) {
-  this.#usuarios.push(usuario);
-}
-
-get Usuarios() {
-  return this.#usuarios;
-}
-
-atualizaUsuario(id: string, dadosAtualizacao: Partial<UsuarioEntity>) {
-  const usuario = this.buscaPorID(id);
-
-  Object.entries(dadosAtualizacao).forEach(([chave, valor]) => {
-    if (valor === undefined) {
-      return;
-    }
-    if (chave === 'id') {
-      return;
-    } else if (chave === 'senha') {
-      usuario.trocarSenha(valor);
-      return;
-    }
-
-    usuario[chave] = valor;
-  });
-
-  return usuario;
-}
-
-private buscaPorID(id: string) {
-  const prossivelUsuario = this.#usuarios.find(
-    (usuarioSalvo) => usuarioSalvo.id === id,
-  );
-
-  if (!prossivelUsuario) {
-    throw new Error('Usuario não encontrado');
-  }
-  return prossivelUsuario;
-}
-
-private buscaPorEmail(email: string) {
-  const prossivelUsuario = this.#usuarios.find(
-    (usuarioSalvo) => usuarioSalvo.email === email,
-  );
-
-  if (!prossivelUsuario) {
-    throw new Error('Usuario não encontrado');
-  }
-  return prossivelUsuario;
-}
-
-validarLogin(email: string, senha: string) {
-  const usuario = this.buscaPorEmail(email);
-  return {
-    login: usuario.login(senha),
-    usuario: usuario,
-  };
-}
-
-removeUsuario(id: string) {
-  const usuario = this.buscaPorID(id);
-
-  this.#usuarios = this.#usuarios.filter(
-    (usuarioSalvo) => usuarioSalvo.id !== id,
-  );
-
-  return usuario;
-}
-
-async validaEmail(email: string): Promise<boolean> {
-  const possivelUsuario = this.#usuarios.find(
-    (usuario) => usuario.email === email,
-  );
-  return possivelUsuario !== undefined;
-}
-
-async findById(id: string): Promise<UsuarioEntity> {
-  console.log('Lista de usuários:', this.#usuarios);
-  return this.buscaPorID(id);
-} */
-
