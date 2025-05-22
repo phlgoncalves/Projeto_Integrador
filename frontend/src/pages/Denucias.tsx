@@ -15,7 +15,7 @@ function Denuncias() {
   const UsuarioLogadoCtx = useContext(UsuarioLogadoContext);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); 
     // Exemplo: exibe os dados no console
     console.log({
       cep,
