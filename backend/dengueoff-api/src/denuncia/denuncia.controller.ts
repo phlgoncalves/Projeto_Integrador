@@ -1,10 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { CriaDenunciaDto } from "./DTO/denuncia.dto";
 import { DenunciasService } from '../denuncia/denuncias.service';
-import { v4 as uuid } from "uuid";
-import { lastValueFrom, map } from "rxjs";
-import { HttpService } from "@nestjs/axios";
-import { UsuarioService } from "src/usuario/usuario.service";
 import { ApiCreatedResponse, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { AlteraDenunciaDto } from "./DTO/altera.denuncia";
 import { RetornoCadastroDTO } from "src/dto/retorno.dto";
@@ -20,8 +16,8 @@ export class DenunciaController{
     @ApiCreatedResponse({ description:'Retorna que houve sucesso na inclusão'})
     @ApiResponse({status: 500, description:'Retorna que houve erro na inclusão.'})
     @ApiResponse({status: 400, description:'Retorna que há algum dado inválido na requisição.'})
-    async ciraDenuncia(@Body() dadosDenuncia: CriaDenunciaDto): Promise <RetornoCadastroDTO>{   
-        var retorno = this.denunciaService.inserir(dadosDenuncia);                       
+    async criaDenuncia(@Body() dadosDenuncia: CriaDenunciaDto): Promise <RetornoCadastroDTO>{   
+        var retorno = await this.denunciaService.inserir(dadosDenuncia);                       
         return retorno        
     }
 
@@ -29,7 +25,7 @@ export class DenunciaController{
     @ApiResponse({status: 200, description:'Retorna que houve sucesso na alteração'})
     @ApiResponse({status: 500, description:'Retorna que houve erro na alteração.'})
     @ApiResponse({status: 400, description:'Retorna que há algum dado inválido na requisição.'})
-    async alteraDenuncia(@Body() dadosNovos: AlteraDenunciaDto,@Param('id') id: string){
+    async alteraDenuncia(@Body() dadosNovos: AlteraDenunciaDto,@Param('id') id: string): Promise<RetornoCadastroDTO>{
         var retornoAlteracao = this.denunciaService.alterar(id,dadosNovos)
         return retornoAlteracao;       
         
@@ -43,11 +39,11 @@ export class DenunciaController{
         return retornoExclusao;               
     }
 
-    @Get('/:ID') 
+    @Get('/:id') 
     @ApiResponse({status: 200, description:'Retorna que houve sucesso na consulta'})
     @ApiResponse({status: 500, description:'Retorna que houve erro na consulta.'})
-    async retornaDenunciaId(@Param('ID') ID:string){
-        var denunciasListadas = await this.denunciaService.Denunciar(ID);
+    async retornaDenunciaId(@Param('id') id:string){
+        var denunciasListadas = await this.denunciaService.Denunciar(id);
         return {
                 Denuncia: denunciasListadas
             };

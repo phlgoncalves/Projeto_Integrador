@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { DENUNCIA } from "./denuncia.entity";
 import { ListaDenunciaDTO } from "./DTO/consulta.dto";
 import { v4 as uuid } from 'uuid';
@@ -30,7 +30,7 @@ export class DenunciasService {
                 denuncia.RUA,
                 denuncia.NUMERO,
                 denuncia.COMPLEMENTO,
-                denuncia.USUARIO?.NOME || 'Usuario não encontrado'
+                denuncia.ANONIMATO ? 'Anônimo' : (denuncia.USUARIO?.NOME || 'Usuario não encontrado')
             ))
 
     }
@@ -44,18 +44,20 @@ export class DenunciasService {
             .addSelect('denuncia.RUA', 'RUA')
             .addSelect('denuncia.NUMERO', 'NUMERO')
             .addSelect('denuncia.COMPLEMENTO', 'COMPLEMENTO')
+            .addSelect('denuncia.ANONIMATO', 'ANONIMATO')
             .addSelect('usuario.NOME', 'NOME_USUARIO')
             .leftJoin('denuncia.USUARIO', 'usuario')
             .where('denuncia.ID = :ID', { ID: id })
             .getRawOne();
 
         if (!denuncia) {
-            throw new Error(`Denúncia com ID ${id} não encontrada`);
+            throw new NotFoundException(`Denúncia com ID ${id} não encontrada`);
         }
 
+        const nome = denuncia.ANONIMATO ? 'um denunciante anônimo' : denuncia.NOME_USUARIO;
+
         return {
-            message: `A denúncia feita por ${denuncia.NOME_USUARIO} relata: "${denuncia.DESCRICAO}". Local: ${denuncia.RUA},
-             Nº ${denuncia.NUMERO}, ${denuncia.COMPLEMENTO || ''} - CEP ${denuncia.CEP}.`,
+            message: `A denúncia feita por ${nome} relata: ${denuncia.DESCRICAO}. Local: ${denuncia.RUA}, Nº ${denuncia.NUMERO}, ${denuncia.COMPLEMENTO || ''} - CEP ${denuncia.CEP}.`,
         };
     }
 
@@ -94,7 +96,7 @@ export class DenunciasService {
         });
 
         if (!denuncia) {
-            throw new Error(`Denuncia com ID ${ID} não encontrado`);
+            throw new NotFoundException(`Denúncia com ID ${ID} não encontrada`);
         }
 
         return denuncia;
@@ -122,8 +124,8 @@ export class DenunciasService {
         const denuncia = await this.localizarID(id);
 
         Object.entries(dados).forEach(([chave, valor]) => {
-            if (valor !== undefined && valor !== null) {
-                denuncia[chave] = valor;
+            if ((valor !== undefined && valor !== null) && (chave in denuncia)) {
+                (denuncia as any)[chave] = valor;
             }
         });
 

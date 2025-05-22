@@ -12,14 +12,14 @@ export class AlteraDenunciaDto {
   })
   DESCRICAO: string;
 
-  @IsArray()
+  @IsString()
   @IsOptional()
   @ApiPropertyOptional({
-    example: '["foto1.jpg", "foto2.jpg"]',
+    example: 'foto3.jpg',
     description:
       'Esse campo é opcional na alteração e será responsável pelas imagens da denúncia.',
   })
-  FOTOS?: string;
+  FOTOS: string;
 
   @IsString()
   @IsOptional()
@@ -65,5 +65,5 @@ export class AlteraDenunciaDto {
     description:
       'Se verdadeira a denúncia não aparecerá com o nome do denunciador',
   })
-  ANONIMATO?: boolean;
+  ANONIMATO: boolean;
 }

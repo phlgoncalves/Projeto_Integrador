@@ -15,7 +15,7 @@ export class CriaDenunciaDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: '["foto1.jpg", "foto2.jpg"]',
+    example: 'foto1.jpg", "foto2.jpg',
     description:
       'Esse campo será responsável pela imagem da denúncia.',
   })
