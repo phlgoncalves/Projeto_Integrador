@@ -67,9 +67,9 @@ export class DenunciasService {
             denuncia.CEP = dados.CEP,
             denuncia.RUA = dados.RUA,
             denuncia.NUMERO = dados.NUMERO,
-            denuncia.COMPLEMENTO,
-            denuncia.USUARIO.NOME
-        denuncia.USUARIO = await this.usuarioService.localizarID(dados.USUARIOID);
+            denuncia.COMPLEMENTO = dados.COMPLEMENTO,
+            denuncia.ANONIMATO = dados.ANONIMATO,
+            denuncia.USUARIO = await this.usuarioService.localizarID(dados.USUARIOID);
 
         return this.denunciaRepository.save(denuncia)
             .then((result) => {
@@ -121,128 +121,24 @@ export class DenunciasService {
     async alterar(id: string, dados: AlteraDenunciaDto): Promise<RetornoCadastroDTO> {
         const denuncia = await this.localizarID(id);
 
-        Object.entries(dados).forEach(
-            async ([chave, valor]) => {
-                if (chave === 'ID') {
-                    return;
-                }
-
-                if (chave === 'USUARIO') {
-                    denuncia['USUARIO'] = await this.usuarioService.localizarID(valor);
-                    return;
-                }
-
-                if (valor)
-                    denuncia[chave] = valor;
-
+        Object.entries(dados).forEach(([chave, valor]) => {
+            if (valor !== undefined && valor !== null) {
+                denuncia[chave] = valor;
             }
-        )
+        });
 
         return this.denunciaRepository.save(denuncia)
-            .then((result) => {
-                return <RetornoCadastroDTO>{
+            .then(() => {
+                return {
                     id: denuncia.ID,
-                    message: "denuncia alterada!"
+                    message: 'Denúncia atualizada com sucesso!'
                 };
             })
             .catch((error) => {
-                return <RetornoCadastroDTO>{
-                    id: "",
-                    message: "Houve um erro ao alterar." + error.message
+                return {
+                    id: '',
+                    message: 'Erro ao atualizar denúncia: ' + error.message
                 };
             });
     }
-    // denuncia(): string {
-    //   const agora = new Date()
-    //   return this.descricao +
-    //     '\nEndereço: ' + this.endereco + (this.complemento ? ', ' + this.complemento : '') +
-    //     ' - CEP ' + this.cep +
-    //     '\nEmail: ' + this.usuario.email +
-    //     '\nFoto: ' + this.fotos +
-    //     '\n' + agora;
-
-    // #denuncias: DenunciaEntity[] = [];
-
-
-    // AdicionarDenuncia(denuncia: DenunciaEntity) {
-    //     this.#denuncias.push(denuncia)
-    // }
-
-    // listarDenuncias(): ListaDenunciaDTO[] {
-    //     return this.#denuncias.map(this.mapDenunciaToDTO);
-    // }
-
-    // private mapDenunciaToDTO(denuncia: DenunciaEntity): ListaDenunciaDTO {
-    //     return new ListaDenunciaDTO(
-    //         denuncia.id,
-    //         denuncia.descricao,
-    //         denuncia.fotos,
-    //         denuncia.cep,
-    //         denuncia.endereco,
-    //         denuncia.complemento,
-    //         denuncia.anonimato ? 'Anônimo' : denuncia.usuario.nome,
-    //     );
-    // }
-
-    // buscarPorId(id: string): DenunciaEntity {
-    //     const denuncia = this.#denuncias.find((d) => d.id === id);
-    //     if (!denuncia) {
-    //         throw new Error('Denúncia não encontrada');
-    //     }
-
-    //     return denuncia;
-    // }
-
-    // buscarTextoDenuncia(id: string): string {
-    //     const denuncia = this.#denuncias.find((d) => d.id === id);
-    //     if (!denuncia) {
-    //         throw new Error('Denúncia não encontrada');
-    //     }
-
-    //     return denuncia.denuncia();
-    // }
-
-    // atualizador(id: string, dadosAtualizacao: Partial<DenunciaEntity>) {
-    //     const denuncia = this.buscarPorId(id);
-
-    //     Object.entries(dadosAtualizacao).forEach(([chave, valor]) => {
-    //         if (valor === undefined) {
-    //             return
-    //         }
-    //         if (chave === 'id') {
-    //             (denuncia as any)[chave] = valor;
-    //         }
-    //     })
-    // }
-
-    // atualizarDenuncia(id: string, dados: AlteraDenunciaDto) {
-    //     const denuncia = this.buscarPorId(id);
-
-    //     denuncia.descricao = dados.DESCRICAO;
-    //     denuncia.fotos = dados.FOTOS;
-    //     denuncia.cep = dados.CEP;
-    //     denuncia.complemento = dados.COMPLEMENTO;
-    //     denuncia.anonimato = dados.ANONIMATO;
-
-    //     return {
-    //         mensagem: 'Denúncia atualizada com sucesso',
-    //         denuncia,
-    //     };
-    // }
-
-
-
-    // removerDenuncia(id: string) {
-    //     const denuncia = this.buscarPorId(id);
-
-    //     const index = this.#denuncias.findIndex((d) => d.id === id);
-    //     this.#denuncias.splice(index, 1);
-
-    //     return {
-    //         mensagem: 'Denúncia removida com sucesso',
-    //         id: denuncia.id,
-    //     };
-    // }
-
-
 }

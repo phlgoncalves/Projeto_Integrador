@@ -37,13 +37,3 @@ export class DENUNCIA {
   USUARIO: USUARIO;
 }
 
-// denuncia(): string {
-//   const agora = new Date()
-//   return this.descricao +
-//     '\nEndereço: ' + this.endereco + (this.complemento ? ', ' + this.complemento : '') +
-//     ' - CEP ' + this.cep +
-//     '\nEmail: ' + this.usuario.email +
-//     '\nFoto: ' + this.fotos +
-//     '\n' + agora;
-// }
-
