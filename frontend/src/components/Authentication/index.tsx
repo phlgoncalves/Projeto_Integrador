@@ -1,11 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../api";
+import { UsuarioLogadoContext } from "../../contexts/contextAuth";
 
 function Authentication() {
   const [fUser, setfUser] = useState('');
   const [fSenha, setfSenha] = useState('');
   const [msgApi, setmsgApi] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleAddEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,15 +18,25 @@ function Authentication() {
     setfSenha(e.target.value);
   };
 
+  const usuarioCtx = useContext(UsuarioLogadoContext);
+
   const RealizarLogin = async () => {
+    setLoading(true);
     try {
       const data = await api.Logar(fUser, fSenha);
       localStorage.setItem('token', data.access_token);
+
+      if (usuarioCtx) {
+        usuarioCtx.setName(data.nome); // salva o nome do usuário
+      }
+      
       alert('Login bem-sucedido!');
       navigate('/denuncia');
     } catch (error) {
       setmsgApi('Usuário ou senha inválidos.');
       console.error('Erro ao fazer login:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,7 +64,9 @@ function Authentication() {
             e.preventDefault();
             RealizarLogin();
           }}
+          disabled={loading}
         >
+          {loading ? 'Enrtando...' : 'Entrar'}
           Entrar
         </button>
 
