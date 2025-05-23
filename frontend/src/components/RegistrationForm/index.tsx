@@ -1,20 +1,23 @@
 import React, { useState } from "react";
+import { api } from "../../api";
 
 function RegistrationForm() {
   const [nome, setNome] = useState("");
   const [dataNasc, setdataNasc] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
-  const [celular, setCelular] = useState("");
+  const [telefone, setTelefone] = useState("");
   const [cep, setCep] = useState("");
   const [rua, setRua] = useState("");
-  const [numero] = useState("");
+  const [numero, setNumero] = useState("");
   const [bairro, setBairro] = useState("");
   const [cidade, setCidade] = useState("");
+  const [complemento, setComplemento] = useState("");
   const [senha, setSenha] = useState("");
   const [confirSenha, setConfirSenha] = useState("");
   const [error, setError] = useState("");
   const [senhaError, setSenhaError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Função para formatar o CPF
   const formatarCPF = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -24,7 +27,7 @@ function RegistrationForm() {
   };
 
   // Função para formatar o celular
-  const formatarCelular = (
+  const formatarTelefone = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     let valor = event.target.value.replace(/\D/g, "");
@@ -35,7 +38,7 @@ function RegistrationForm() {
     } else {
       valor = valor.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
     }
-    setCelular(valor);
+    setTelefone(valor);
   };
 
   const formatarDataNascimento = (
@@ -99,200 +102,235 @@ function RegistrationForm() {
       });
   };
 
-  async function handleSubmit() {
-    // Validando e-mail
+  async function handleSubmit(e: React.FormEvent) {
+    if (!nome || !dataNasc || !email || !cpf || !telefone || !cep ||
+      !rua || !numero || !bairro || !cidade || !senha) {
+      setError("Preencha todos os campos obrigatórios.");
+      return;
+    }
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    setSenhaError("");
+
     if (!validateEmail(email)) {
       setError("Por favor, insira um e-mail válido.");
       return;
     }
 
-    // Validando senha
-    if (!validatePassword(senha, confirSenha)) {
+    if (senha !== confirSenha) {
       setSenhaError("As senhas não coincidem.");
+      setIsSubmitting(false);
       return;
     }
 
-    // Enviando os dados para o servidor
-    try {
-      let response = await fetch("http://localhost:3000/usuario", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nome,
-          email,
-          cpf,
-          celular,
-          senha,
-          confirSenha,
-        }),
-      });
+    const dataParts = dataNasc.split('/');
+    const dataFormatada = `${dataParts[2]}-${dataParts[1]}-${dataParts[0]}`;
 
-      if (response.ok) {
-        alert("Cadastro realizado com sucesso");
-        window.location.href = "/";
-      } else {
-        alert("Erro ao cadastrar");
-      }
+    try {
+      // Remove máscaras antes de enviar
+      const cpfNumerico = cpf.replace(/\D/g, '');
+      const cepNumerico = cep.replace(/\D/g, '');
+      const telefoneNumerico = telefone.replace(/\D/g, '');
+
+      const response = await api.AdicionarUsuarios(
+        nome,
+        dataFormatada, // DATANASC no formato YYYY-MM-DD
+        email,
+        cepNumerico,
+        rua,
+        numero,
+        bairro,
+        complemento,
+        cidade,
+        cpfNumerico,
+        telefoneNumerico,
+        senha
+      );
+
+      alert("Cadastro realizado com sucesso!");
+      
+      window.location.href = "/login";
     } catch (error) {
-      console.error("Erro:", error);
-      alert("Erro ao cadastrar");
+      console.error("Erro no cadastro:", error);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Erro ao cadastrar. Tente novamente.");
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   return (
     <div className="registro">
-      <label htmlFor="nome">Nome</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="nome"
-        id="nome"
-        placeholder="Digite seu nome completo"
-        value={nome}
-        // onChange={(e) => setNome(e.target.value)}
-        onChange={(e) => {
-          const textoOriginal = e.target.value;
-          const textoFormatado = textoOriginal
-            .toLowerCase()
-            .replace(/\b\w/g, (char) => char.toUpperCase());
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="nome">Nome</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="nome"
+          id="nome"
+          placeholder="Digite seu nome completo"
+          value={nome}
+          // onChange={(e) => setNome(e.target.value)}
+          onChange={(e) => {
+            const textoOriginal = e.target.value;
+            const textoFormatado = textoOriginal
+              .toLowerCase()
+              .replace(/\b\w/g, (char) => char.toUpperCase());
 
-          setNome(textoFormatado);
-        }}
-      />
+            setNome(textoFormatado);
+          }}
+        />
 
-      <label htmlFor="dataNasc">Data de Nascimento</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="dataNasc"
-        id="dataNasc"
-        placeholder="DD/MM/AAAA"
-        maxLength={10}
-        value={dataNasc}
-        onChange={formatarDataNascimento}
-      />
+        <label htmlFor="dataNasc">Data de Nascimento</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="dataNasc"
+          id="dataNasc"
+          placeholder="DD/MM/AAAA"
+          maxLength={10}
+          value={dataNasc}
+          onChange={formatarDataNascimento}
+        />
 
-      <label htmlFor="email">E-mail</label>
-      <input
-        className="input-registro"
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Digite seu e-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      {error && <p className="error-msg">{error}</p>}
+        <label htmlFor="email">E-mail</label>
+        <input
+          className="input-registro"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Digite seu e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {error && <p className="error-msg">{error}</p>}
 
-      <label htmlFor="cpf">CPF</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="cpf"
-        id="cpf"
-        placeholder="XXX.XXX.XXX-XX"
-        maxLength={14}
-        value={cpf}
-        onChange={formatarCPF}
-      />
+        <label htmlFor="cpf">CPF</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="cpf"
+          id="cpf"
+          placeholder="XXX.XXX.XXX-XX"
+          maxLength={14}
+          value={cpf}
+          onChange={formatarCPF}
+        />
 
-      <label htmlFor="celular">Celular</label>
-      <input
-        className="input-registro"
-        type="tel"
-        name="celular"
-        id="celular"
-        placeholder="(XX) XXXXX-XXXX"
-        maxLength={15}
-        value={celular}
-        onChange={formatarCelular}
-      />
+        <label htmlFor="celular">Celular</label>
+        <input
+          className="input-registro"
+          type="tel"
+          name="celular"
+          id="celular"
+          placeholder="(XX) XXXXX-XXXX"
+          maxLength={15}
+          value={telefone}
+          onChange={formatarTelefone}
+        />
 
-      <label htmlFor="cep">CEP</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="cep"
-        id="cep"
-        placeholder="XXXXX-XXX"
-        maxLength={10}
-        value={cep}
-        onChange={formatarCEP}
-        onBlur={checkCEP}
-      />
+        <label htmlFor="cep">CEP</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="cep"
+          id="cep"
+          placeholder="XXXXX-XXX"
+          maxLength={10}
+          value={cep}
+          onChange={formatarCEP}
+          onBlur={checkCEP}
+        />
 
-      <label htmlFor="rua">Rua</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="rua"
-        id="rua"
-        placeholder="Rua Sorocabana"
-        maxLength={10}
-        value={rua}
-      />
+        <label htmlFor="rua">Rua</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="rua"
+          id="rua"
+          placeholder="Rua Sorocabana"
+          maxLength={10}
+          value={rua}
+        />
 
-      <label htmlFor="rua">Número</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="numero"
-        id="numero"
-        placeholder="1-26"
-        maxLength={10}
-        value={numero}
-      />
+        <label htmlFor="numero">Número</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="numero"
+          id="numero"
+          placeholder="1-26"
+          maxLength={10}
+          value={numero}
+          onChange={(e) => setNumero(e.target.value)}
+        />
 
-      <label htmlFor="rua">Bairro</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="bairro"
-        id="bairro"
-        placeholder="1-26"
-        maxLength={10}
-        value={bairro}
-      />
+        <label htmlFor="bairro">Bairro</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="bairro"
+          id="bairro"
+          placeholder="1-26"
+          maxLength={10}
+          value={bairro}
+        />
 
-      <label htmlFor="rua">Cidade</label>
-      <input
-        className="input-registro"
-        type="text"
-        name="cidade"
-        id="cidade"
-        placeholder="1-26"
-        maxLength={10}
-        value={cidade}
-      />
+        <label htmlFor="rua">Cidade</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="cidade"
+          id="cidade"
+          placeholder="1-26"
+          maxLength={10}
+          value={cidade}
+        />
 
-      <label htmlFor="senha">Senha</label>
-      <input
-        className="input-registro"
-        type="password"
-        name="senha"
-        id="senha"
-        placeholder="Crie uma senha"
-        value={senha}
-        onChange={(e) => setSenha(e.target.value)}
-      />
+        <label htmlFor="complemento">Complemento</label>
+        <input
+          className="input-registro"
+          type="text"
+          name="complemento"
+          id="complemento"
+          placeholder="Apartamento 123"
+          value={complemento}
+          onChange={(e) => setComplemento(e.target.value)}
+        />
 
-      <label htmlFor="confirSenha">Confirme sua senha</label>
-      <input
-        className="input-registro"
-        type="password"
-        name="confirSenha"
-        id="confirSenha"
-        placeholder="Confirme a senha"
-        value={confirSenha}
-        onChange={(e) => setConfirSenha(e.target.value)}
-      />
-      {senhaError && <p className="error-msg">{senhaError}</p>}
+        <label htmlFor="senha">Senha</label>
+        <input
+          className="input-registro"
+          type="password"
+          name="senha"
+          id="senha"
+          placeholder="Crie uma senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+        />
 
-      <div className="container-btn-registro">
-        <button onClick={handleSubmit}>Criar Conta</button>
-      </div>
+        <label htmlFor="confirSenha">Confirme sua senha</label>
+        <input
+          className="input-registro"
+          type="password"
+          name="confirSenha"
+          id="confirSenha"
+          placeholder="Confirme a senha"
+          value={confirSenha}
+          onChange={(e) => setConfirSenha(e.target.value)}
+        />
+        {senhaError && <p className="error-msg">{senhaError}</p>}
+
+        <div className="container-btn-registro">
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Cadastrando..." : "Criar Conta"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
