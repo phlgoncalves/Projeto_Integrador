@@ -15,8 +15,9 @@ function Header() {
 
   <nav className ="nav-links">
     <a href="quem-somos">Quem Somos</a>
+    <a href="perfil">Perfil</a>
     <a href="login">Login</a>
-    <button id="btnDenunciaHeader">Fazer Denúncia</button>
+    <button id="btnDenunciaHeader"><a href="denuncia">Fazer Denúncia</a></button>
   </nav>
 </header>
   );

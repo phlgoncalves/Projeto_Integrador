@@ -108,8 +108,7 @@ p {
 }
 
 .baner-home {
-  width: 85%;
-  height: 50%;
+  width: 65%;
 }
 
 .container-boas {
@@ -140,10 +139,11 @@ p {
   font-size: 28px;
 }
 
-
 .numero-denuncias {
   color: #D9ED92;
-  font-size: 20px;
+  font-size: 30px;
+  padding-top: 70px;
+  
 }
 
 .btn-boasVindas {
@@ -162,7 +162,7 @@ p {
   margin-top: 150px;
   width: 85%;
   gap: 10px;
-  height: 600px;
+  height: 450px;
   color: white;
   justify-content: space-between;
 }
@@ -248,7 +248,7 @@ p {
   
   .container-btnDenunciaHome {
     background-color: white;
-    width: 85%;
+    width: 65%;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -357,10 +357,12 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
  
 
 /* =================== LOGIN =================== */
-.div-login {
+  .div-login {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
+    height: 100vh
   }
   
   .authentication {
@@ -467,9 +469,14 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
   }
 
   .botao-registro:hover{
-    border-bottom: 1px solid white;
+    color:  #D9ED92;
   }
 
+  .botao-registro{
+    color: whitesmoke;
+    text-decoration: none;
+  }
+  
 /* =================== DENUNCIAS =================== */
 
 .container-denuncias {
@@ -678,6 +685,7 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
       font-size: 2rem;
       margin-bottom: 1.5rem;
       color: #1e3a8a;
+      
   }
   
   .perfil-info {
@@ -724,7 +732,8 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
   
   .perfil-tabela th,
   .perfil-tabela td {
-      border: 1px solid #ddd;
+      /* border: 1px solid #ddd; */
+      border: 1px solid white;
       padding: 0.8rem;
   }
   
@@ -733,6 +742,7 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
       color: white;
       width: 40%;
       font-weight: 600;
+      border-top-left-radius: 10px;
   }
   
   .perfil-tabela td {
@@ -871,6 +881,7 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
   height: auto;
   object-fit: cover;
   border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(40, 0, 0, 0.8);
 }
 
 .texto-container {
@@ -905,8 +916,10 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
 
 .impacto-container {
   background-color: #f0f9ff;
+  width: 65%;
   padding: 4rem 1rem;
-  border-radius: 15px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
 }
 
 .impacto-inner {
@@ -940,6 +953,7 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   text-align: center;
+  
 }
 
 .impacto-numero {
@@ -951,7 +965,9 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
 
 .impacto-legenda {
   font-size: 1.125rem;
-  color: #64748b;
+  /* color: #64748b; */
+  color: black;
+
 }
 
 /*========================= COMBATE DENGUE =======================*/
@@ -1059,5 +1075,267 @@ input[type="date"], input[type="tel"], input[type="email"], input[type="password
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/*=================================  ================================*/
+/*============================ VER DENUNCIA  ================================*/
 
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+/* Cabeçalho */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+/* Filtros */
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filtro {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filtro label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.filtro input,
+.filtro select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+.filtro input:focus,
+.filtro select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Estatísticas */
+.estatisticas {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.estatistica-item {
+  flex: 1;
+  min-width: 120px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.estatistica-item .numero {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.estatistica-item .label {
+  color: #7f8c8d;
+  margin-top: 5px;
+}
+
+/* Cards de denúncias */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-top: 4px solid #95a5a6;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card.resolvido {
+  border-top-color: #27ae60;
+}
+
+.card.pendente {
+  border-top-color: #e74c3c;
+}
+
+.card.em-análise {
+  border-top-color: #f39c12;
+}
+
+.card-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.card-header h2 {
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: white;
+}
+
+.status.resolvido {
+  background-color: #27ae60;
+}
+
+.status.pendente {
+  background-color: #e74c3c;
+}
+
+.status.em-análise {
+  background-color: #f39c12;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body p {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.categoria {
+  background-color: #ecf0f1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #2c3e50;
+}
+
+.prioridade {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.prioridade.alta {
+  color: #e74c3c;
+}
+
+.prioridade.média {
+  color: #f39c12;
+}
+
+.prioridade.baixa {
+  color: #27ae60;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+.sem-resultados {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .filtro {
+    min-width: 100%;
+  }
+
+  .estatistica-item {
+    min-width: calc(50% - 10px);
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .estatistica-item {
+    min-width: 100%;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-info {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

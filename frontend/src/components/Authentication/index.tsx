@@ -59,10 +59,11 @@ function Authentication() {
         {msgApi && <p style={{ color: 'red' }}>{msgApi}</p>}
 
         <div>
+          <br />
           Não tem conta ainda?
           <br />
           <Link to={'/registro'} className="botao-registro"> Registre-se aqui</Link>
-          <br /><br /><br />
+          <br /><br />
           <Link to={'/esqueci-senha'} className="botao-registro">Esqueci minha senha!</Link>
         </div>
       </form>
