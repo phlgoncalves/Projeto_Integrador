@@ -65,12 +65,12 @@ export const api = {
     Logar: async (EMAIL: string, SENHA: string) => {
         const response = await fetch('http://localhost:3000/usuarios/login', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ EMAIL, SENHA })
         });
-  
+
         if (!response.ok) throw new Error('Falha no login');
-  
+
         return await response.json();
     },
 
@@ -80,35 +80,37 @@ export const api = {
         cep: string,
         rua: string,
         numero: string,
+        bairro: string,
         complemento: string,
         anonimato: boolean,
         usuarioId: string
-      ) => {
+    ) => {
         const response = await fetch('http://localhost:3000/denuncias', {
-          method: 'POST',
-          headers: { 
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
-          },
-          body: JSON.stringify({
-            DESCRICAO: descricao,
-            FOTOS: fotos,
-            CEP: cep,
-            RUA: rua,
-            NUMERO: numero,
-            COMPLEMENTO: complemento,
-            ANONIMATO: anonimato,
-            USUARIOID: usuarioId
-          })
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
+            },
+            body: JSON.stringify({
+                DESCRICAO: descricao,
+                FOTOS: fotos,
+                CEP: cep,
+                RUA: rua,
+                NUMERO: numero,
+                BAIRRO: bairro,
+                COMPLEMENTO: complemento,
+                ANONIMATO: anonimato,
+                USUARIOID: usuarioId
+            })
         });
-      
+
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Erro ao cadastrar denúncia');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Erro ao cadastrar denúncia');
         }
-      
+
         return await response.json();
-      },
+    },
 
     CarregarTodasDenuncias: async () => {
         const response = await fetch('http://localhost:3000/denuncias');
@@ -121,7 +123,8 @@ export const api = {
             fotos: JSON.parse(d.FOTOS), // transforma string JSON em array
             cep: d.CEP,
             rua: d.RUA,
-            numero: d.NUMERO,
+            numero: d.BAIRRO,
+            bairro: d.NUMERO,
             complemento: d.COMPLEMENTO,
             usuario: d.USUARIO
         }));

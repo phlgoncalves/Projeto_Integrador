@@ -570,7 +570,8 @@ input[type="password"] {
 .cep-input,
 .rua-input,
 .numero-input,
-.complemento-input {
+.complemento-input,
+.bairro-input {
   padding: 7px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -582,7 +583,8 @@ input[type="password"] {
 .cep-input:focus,
 .rua-input:focus,
 .numero-input:focus,
-.complemento-input:focus {
+.complemento-input:focus,
+.bairro-input:focus {
   border-color: #4CAF50;
 }
 
@@ -590,16 +592,12 @@ input[type="password"] {
   width: 120px;
 }
 
-.rua-input {
+.rua-input,.complemento-input, .bairro-input{
   width: 100%;
 }
 
 .numero-input {
   width: 80px;
-}
-
-.complemento-input {
-  width: 100%;
 }
 
 /* Switch */

@@ -9,6 +9,7 @@ function Denuncias() {
   const [cep, setCep] = useState('');
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
+  const [bairro, setBairro] = useState('');
   const [complemento, setComplemento] = useState('');
   const [descricao, setDescricao] = useState('');
   const [foto, setFoto] = useState<File | null>(null);
@@ -35,6 +36,7 @@ function Denuncias() {
         cep,
         rua,
         numero,
+        bairro,
         complemento,
         isAnonimo,
         usuarioId
@@ -45,6 +47,7 @@ function Denuncias() {
       setCep('');
       setRua('');
       setNumero('');
+      setBairro('');
       setComplemento('');
       setFoto(null);
 
@@ -130,6 +133,18 @@ function Denuncias() {
               placeholder="Quadra 3"
               value={numero}
               onChange={(e) => setNumero(e.target.value)}
+              required
+            />
+            <br /><br />
+
+            <label htmlFor="bairro">Bairro:</label><br />
+            <input
+              className="bairro-input"
+              type="text"
+              id="bairro"
+              placeholder="Vila Santa Clara"
+              value={bairro}
+              onChange={(e) => setBairro(e.target.value)}
               required
             />
             <br /><br />
