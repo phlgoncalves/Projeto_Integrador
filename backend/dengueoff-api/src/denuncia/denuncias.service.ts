@@ -29,6 +29,7 @@ export class DenunciasService {
                 denuncia.CEP,
                 denuncia.RUA,
                 denuncia.NUMERO,
+                denuncia.BAIRRO,
                 denuncia.COMPLEMENTO,
                 denuncia.ANONIMATO ? 'Anônimo' : (denuncia.USUARIO?.NOME || 'Usuario não encontrado')
             ))
@@ -43,6 +44,7 @@ export class DenunciasService {
             .addSelect('denuncia.CEP', 'CEP')
             .addSelect('denuncia.RUA', 'RUA')
             .addSelect('denuncia.NUMERO', 'NUMERO')
+            .addSelect('denuncia.BAIRRO', 'BAIRRO')
             .addSelect('denuncia.COMPLEMENTO', 'COMPLEMENTO')
             .addSelect('denuncia.ANONIMATO', 'ANONIMATO')
             .addSelect('usuario.NOME', 'NOME_USUARIO')
@@ -57,7 +59,7 @@ export class DenunciasService {
         const nome = denuncia.ANONIMATO ? 'um denunciante anônimo' : denuncia.NOME_USUARIO;
 
         return {
-            message: `A denúncia feita por ${nome} relata: ${denuncia.DESCRICAO}. Local: ${denuncia.RUA}, Nº ${denuncia.NUMERO}, ${denuncia.COMPLEMENTO || ''} - CEP ${denuncia.CEP}.`,
+            message: `A denúncia feita por ${nome} relata: ${denuncia.DESCRICAO}. Local: ${denuncia.RUA}, Nº ${denuncia.NUMERO}, BAIRRO ${denuncia.BAIRRO}, ${denuncia.COMPLEMENTO || ''} - CEP ${denuncia.CEP}.`,
         };
     }
 
@@ -69,6 +71,7 @@ export class DenunciasService {
             denuncia.CEP = dados.CEP,
             denuncia.RUA = dados.RUA,
             denuncia.NUMERO = dados.NUMERO,
+            denuncia.BAIRRO = dados.BAIRRO,
             denuncia.COMPLEMENTO = dados.COMPLEMENTO,
             denuncia.ANONIMATO = dados.ANONIMATO,
             denuncia.USUARIO = await this.usuarioService.localizarID(dados.USUARIOID);

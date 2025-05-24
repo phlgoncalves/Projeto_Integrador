@@ -6,6 +6,7 @@ export class ListaDenunciaDTO {
     readonly CEP: string,
     readonly RUA: string,
     readonly NUMERO: string,
+    readonly BAIRRO: string,
     readonly COMPLEMENTO: string,
     readonly USUARIO: string,
   ) {}

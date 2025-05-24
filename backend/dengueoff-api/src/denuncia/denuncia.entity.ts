@@ -23,6 +23,9 @@ export class DENUNCIA {
   NUMERO: string;
 
   @Column({ length: 255 })
+  BAIRRO: string;
+
+  @Column({ length: 255 })
   COMPLEMENTO: string;
 
   @Column()

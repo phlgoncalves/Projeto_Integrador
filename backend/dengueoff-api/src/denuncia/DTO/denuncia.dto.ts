@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, IsBoolean, IsArray} from "class-validator";
+import { IsNotEmpty, IsString, IsBoolean, IsArray } from "class-validator";
 
 export class CriaDenunciaDto {
 
@@ -30,7 +30,7 @@ export class CriaDenunciaDto {
   })
   CEP: string;
 
-   @IsString()
+  @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'Rua Sorocabana',
@@ -39,7 +39,7 @@ export class CriaDenunciaDto {
   })
   RUA: string;
 
-   @IsString()
+  @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: '1-26',
@@ -47,6 +47,15 @@ export class CriaDenunciaDto {
       'Esse campo vai ser utilizado para informar numero da quadra',
   })
   NUMERO: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    example: 'Santa Clara',
+    description:
+      'Esse campo vai ser utilizado para informar o bairro da denuncia',
+  })
+  BAIRRO: string;
 
   @IsString()
   @IsNotEmpty()

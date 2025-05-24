@@ -48,6 +48,15 @@ export class AlteraDenunciaDto {
   })
   NUMERO: string;
 
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: 'Vila Santa Clara',
+    description:
+      'Campo opcional na alteração do complemento do lugar para denúncia para facilitar a localização',
+  })
+  BAIRRO: string;
+
 
   @IsString()
   @IsOptional()
