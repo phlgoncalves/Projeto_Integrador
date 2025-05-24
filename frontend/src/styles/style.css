@@ -832,7 +832,6 @@ input[type="password"] {
 
 /* =================== FOOTER =================== */
 .container-footer {
-<<<<<<< HEAD
     width: 100%;
     height: 80px;
     background: #006494;
@@ -845,9 +844,7 @@ input[type="password"] {
     text-align: center;
     padding: 0 1rem;
   }
-  
-=======
-  width: 100%;
+  /* width: 100%;
   height: 80px;
   background-color: #184E77;
   color: #D9ED92;
@@ -859,8 +856,7 @@ input[type="password"] {
   text-align: center;
   padding: 0 1rem;
 }
-
->>>>>>> db35fbe991ff66db0f8201165dd1f35ba791714b
+   */
 /* =================== POPUPS =================== */
 .popup {
   position: fixed;
@@ -883,11 +879,6 @@ input[type="password"] {
 
 /*==============================QUEM SOMOS==============================*/
 
-<<<<<<< HEAD
-=======
-/* src/components/QuemSomos.css */
-
->>>>>>> db35fbe991ff66db0f8201165dd1f35ba791714b
 .quem-somos {
   display: flex;
   flex-direction: column;
