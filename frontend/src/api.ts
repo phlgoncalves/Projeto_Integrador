@@ -76,26 +76,39 @@ export const api = {
 
     AdicionarDenuncia: async (
         descricao: string,
-        fotos: string,
+        fotos: string, // String fictícia
         cep: string,
+        rua: string,
+        numero: string,
         complemento: string,
         anonimato: boolean,
         usuarioId: string
-    ) => {
+      ) => {
         const response = await fetch('http://localhost:3000/denuncias', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                descricao,
-                fotos,
-                cep,
-                complemento,
-                anonimato,
-                usuarioId
-            })
+          method: 'POST',
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
+          },
+          body: JSON.stringify({
+            DESCRICAO: descricao,
+            FOTOS: fotos,
+            CEP: cep,
+            RUA: rua,
+            NUMERO: numero,
+            COMPLEMENTO: complemento,
+            ANONIMATO: anonimato,
+            USUARIOID: usuarioId
+          })
         });
+      
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Erro ao cadastrar denúncia');
+        }
+      
         return await response.json();
-    },
+      },
 
     CarregarTodasDenuncias: async () => {
         const response = await fetch('http://localhost:3000/denuncias');
