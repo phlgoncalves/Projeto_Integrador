@@ -156,7 +156,7 @@ function VerDenuncia() {
           <input
             type="text"
             id="pesquisa"
-            placeholder="Buscar por título ou descrição"
+            placeholder="Busca por Bairro"
             value={pesquisa}
             onChange={(e) => setPesquisa(e.target.value)}
           />

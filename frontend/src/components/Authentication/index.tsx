@@ -67,13 +67,12 @@ function Authentication() {
           disabled={loading}
         >
           {loading ? 'Enrtando...' : 'Entrar'}
-          Entrar
+          
         </button>
 
         {msgApi && <p style={{ color: 'red' }}>{msgApi}</p>}
 
         <div>
-          <br />
           Não tem conta ainda?
           <br />
           <Link to={'/registro'} className="botao-registro"> Registre-se aqui</Link>
