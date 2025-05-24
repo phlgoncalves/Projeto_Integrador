@@ -9,6 +9,7 @@ function Authentication() {
   const [msgApi, setmsgApi] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const usuarioCtx = useContext(UsuarioLogadoContext);
 
   const handleAddEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setfUser(e.target.value);
@@ -18,22 +19,22 @@ function Authentication() {
     setfSenha(e.target.value);
   };
 
-  const usuarioCtx = useContext(UsuarioLogadoContext);
-
   const RealizarLogin = async () => {
     setLoading(true);
     try {
-      const data = await api.Logar(fUser, fSenha);
-      localStorage.setItem('token', data.access_token);
-
-      if (usuarioCtx) {
-        usuarioCtx.setName(data.nome); // salva o nome do usuário
+      if (!usuarioCtx) {
+        throw new Error("Contexto não encontrado");
       }
-      
-      alert('Login bem-sucedido!');
-      navigate('/denuncia');
+
+      const success = await usuarioCtx.login(fUser, fSenha);
+
+      if (success) {
+        navigate('/denuncia');
+      } else {
+        setmsgApi('Email ou senha inválidos');
+      }
     } catch (error) {
-      setmsgApi('Usuário ou senha inválidos.');
+      setmsgApi(error instanceof Error ? error.message : 'Erro ao fazer login');
       console.error('Erro ao fazer login:', error);
     } finally {
       setLoading(false);
