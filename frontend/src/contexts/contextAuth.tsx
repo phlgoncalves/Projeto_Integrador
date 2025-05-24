@@ -1,37 +1,56 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
- 
+import { ReactNode, createContext, useState } from "react";
+import { api } from "../api";
+
 type ContextType = {
-    name: string;
-    setName: (n:string) => void;
-    logout: () => void;
+  isLogged: boolean;
+  name: string;
+  userId: string;
+  login: (email: string, senha: string) => Promise<boolean>;
+  logout: () => void;
 }
- 
+
 export const UsuarioLogadoContext = createContext<ContextType | null>(null);
- 
- 
-export const UsuarioLogadoProvider = ({ children}: {children: ReactNode}) => {
-    const[name, setName] = useState('');
 
-    useEffect(() => {
-        const storedName = localStorage.getItem('username');
-        if (storedName) setName(storedName);
-      }, []);
+export const UsuarioLogadoProvider = ({ children }: { children: ReactNode }) => {
+  const [name, setName] = useState('');
+  const [userId, setUserId] = useState('');
+  const [isLogged, setIsLogged] = useState(false);
 
-      const handleSetName = (n: string) => {
-        localStorage.setItem('username', n);
-        setName(n);
-      };
-    
-      const logout = () => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('token'); // também remove o token se estiver usando
-        setName('');
-      };
+  const login = async (email: string, senha: string) => {
+    try {
+      const response = await api.Logar(email, senha);
 
-    return (
-        <UsuarioLogadoContext.Provider value={{name, setName: handleSetName, logout}}>
-            {children}
-        </UsuarioLogadoContext.Provider>
-    )
- 
-}
+      if (response.usuario) {
+        setName(response.usuario.NOME);
+        setUserId(response.usuario.ID);
+        setIsLogged(true);
+        localStorage.setItem('userId', response.usuario.ID);
+        localStorage.setItem('username', response.usuario.NOME);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const logout = () => {
+    setName('');
+    setUserId('');
+    setIsLogged(false);
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+  };
+
+  return (
+    <UsuarioLogadoContext.Provider value={{
+      isLogged,
+      name,
+      userId,
+      login,
+      logout
+    }}>
+      {children}
+    </UsuarioLogadoContext.Provider>
+  );
+};

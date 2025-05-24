@@ -65,17 +65,12 @@ export const api = {
     Logar: async (EMAIL: string, SENHA: string) => {
         const response = await fetch('http://localhost:3000/usuarios/login', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ EMAIL, SENHA })
         });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Falha no login: ${errorText}`);
-        }
-
+  
+        if (!response.ok) throw new Error('Falha no login');
+  
         return await response.json();
     },
 
