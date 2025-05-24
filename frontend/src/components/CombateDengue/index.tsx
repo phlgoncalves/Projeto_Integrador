@@ -17,7 +17,7 @@ const CombateDengue = () => {
               <Link to="/denuncia" className="botao-denuncia">
                 Fazer Denúncia
               </Link>
-              <Link to="/denuncias" className="botao-ver-denuncias">
+              <Link to="/ver-denuncia" className="botao-ver-denuncias">
                 Ver Denúncias
               </Link>
             </div>
