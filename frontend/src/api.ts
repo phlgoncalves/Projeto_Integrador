@@ -62,6 +62,70 @@ export const api = {
         }));
         return usuarios;
     },
+
+    CarregarUsuarioPorId: async (userId: string) => {
+        const response = await fetch(`http://localhost:3000/usuarios/ID/${userId}`);
+        if (!response.ok) throw new Error('Usuário não encontrado');
+
+        const data = await response.json();
+        return {
+            nome: data.NOME,
+            email: data.EMAIL,
+            dataNascimento: data.DATANASC, // Formato YYYY-MM-DD
+            cpf: data.CPF,
+            celular: data.TELEFONE,
+            cep: data.CEP,
+            rua: data.RUA,
+            numero: data.NUMERO,
+            bairro: data.BAIRRO,
+            complemento: data.COMPLEMENTO,
+            cidade: data.CIDADE
+        };
+    },
+
+    AtualizarUsuario: async (
+        userId: string,
+        nome: string,
+        dataNascimento: string,
+        email: string,
+        cep: string,
+        rua: string,
+        numero: string,
+        bairro: string,
+        complemento: string,
+        cidade: string,
+        cpf: string,
+        celular: string
+    ) => {
+        const response = await fetch(`http://localhost:3000/usuarios/${userId}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
+            },
+            body: JSON.stringify({
+                NOME: nome,
+                DATANASC: dataNascimento,
+                EMAIL: email,
+                CEP: cep,
+                RUA: rua,
+                NUMERO: numero,
+                BAIRRO: bairro,
+                COMPLEMENTO: complemento,
+                CIDADE: cidade,
+                CPF: cpf,
+                TELEFONE: celular
+            })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Erro ao atualizar usuário');
+        }
+
+        return await response.json();
+    },
+
     Logar: async (EMAIL: string, SENHA: string) => {
         const response = await fetch('http://localhost:3000/usuarios/login', {
             method: 'POST',
@@ -120,13 +184,15 @@ export const api = {
         return data.map((d: any) => ({
             id: d.ID,
             descricao: d.DESCRICAO,
-            fotos: JSON.parse(d.FOTOS), // transforma string JSON em array
+            // fotos: JSON.parse(d.FOTOS),
+            fotos: d.FOTOS, // Agora é tratado como string direta
             cep: d.CEP,
             rua: d.RUA,
-            numero: d.BAIRRO,
-            bairro: d.NUMERO,
+            numero: d.NUMERO,
+            bairro: d.BAIRRO,
             complemento: d.COMPLEMENTO,
-            usuario: d.USUARIO
+            usuario: d.USUARIO,
+            anonimato: d.ANONIMATO
         }));
     },
 
