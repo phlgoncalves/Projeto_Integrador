@@ -64,22 +64,27 @@ export const api = {
     },
 
     CarregarUsuarioPorId: async (userId: string) => {
-        const response = await fetch(`http://localhost:3000/usuarios/ID/${userId}`);
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:3000/usuarios/ID/${userId}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
         if (!response.ok) throw new Error('Usuário não encontrado');
 
         const data = await response.json();
         return {
-            nome: data.NOME,
-            email: data.EMAIL,
-            dataNascimento: data.DATANASC, // Formato YYYY-MM-DD
-            cpf: data.CPF,
-            celular: data.TELEFONE,
-            cep: data.CEP,
-            rua: data.RUA,
-            numero: data.NUMERO,
-            bairro: data.BAIRRO,
-            complemento: data.COMPLEMENTO,
-            cidade: data.CIDADE
+            NOME: data.NOME,
+            EMAIL: data.EMAIL,
+            DATANASC: data.DATANASC,
+            CPF: data.CPF,
+            TELEFONE: data.TELEFONE,
+            CEP: data.CEP,
+            RUA: data.RUA,
+            NUMERO: data.NUMERO,
+            BAIRRO: data.BAIRRO,
+            COMPLEMENTO: data.COMPLEMENTO,
+            CIDADE: data.CIDADE
         };
     },
 
@@ -94,7 +99,6 @@ export const api = {
         bairro: string,
         complemento: string,
         cidade: string,
-        cpf: string,
         celular: string
     ) => {
         const response = await fetch(`http://localhost:3000/usuarios/${userId}`, {
@@ -113,7 +117,6 @@ export const api = {
                 BAIRRO: bairro,
                 COMPLEMENTO: complemento,
                 CIDADE: cidade,
-                CPF: cpf,
                 TELEFONE: celular
             })
         });

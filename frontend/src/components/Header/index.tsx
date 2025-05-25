@@ -23,4 +23,9 @@ function Header() {
   );
 }
 
+// Não apagar, vou usar na sala para refatoração
+// {usuarioCtx?.isLogged && (
+//     <Link to="/perfil" className="header-link">Perfil</Link>
+// )}
+
 export default Header;

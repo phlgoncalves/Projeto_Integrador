@@ -12,9 +12,10 @@ type ContextType = {
 export const UsuarioLogadoContext = createContext<ContextType | null>(null);
 
 export const UsuarioLogadoProvider = ({ children }: { children: ReactNode }) => {
-  const [name, setName] = useState('');
-  const [userId, setUserId] = useState('');
-  const [isLogged, setIsLogged] = useState(false);
+  const [name, setName] = useState(localStorage.getItem('username') || '');
+  const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
+  const [isLogged, setIsLogged] = useState(!!localStorage.getItem('userId'));
+  
 
   const login = async (email: string, senha: string) => {
     try {
@@ -26,6 +27,7 @@ export const UsuarioLogadoProvider = ({ children }: { children: ReactNode }) => 
         setIsLogged(true);
         localStorage.setItem('userId', response.usuario.ID);
         localStorage.setItem('username', response.usuario.NOME);
+        localStorage.setItem('token', response.token);
         return true;
       }
       return false;
