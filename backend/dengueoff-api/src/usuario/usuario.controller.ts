@@ -53,10 +53,10 @@ export class UsuarioController {
 
 
   @Get('ID/:id')
-  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na consulta' })
-  @ApiResponse({ status: 500, description: 'Retorna que houve erro na consulta.' })
-  async retornaUsuarioId(@Param('ID') ID: string): Promise<USUARIO> {
-    return this.classeUsuarioService.localizarID(ID);
+  @ApiResponse({ status: 200, description: 'Retorna que houve sucesso na exclusão' })
+  @ApiResponse({ status: 500, description: 'Retorna que houve erro na exclusão.' })
+  async retornaUsuarioId(@Param('id') id: string): Promise<USUARIO> {
+    return this.classeUsuarioService.localizarID(id);
   }
 
   @Get('')
