@@ -9,12 +9,14 @@ import "../src/styles/style.css";
 import { UsuarioLogadoProvider } from "./contexts/contextAuth";
 import QuemSomos from "../src/pages/QuemSomos";
 import VerDenuncia from "./pages/VerDenuncia";
+import MosquitoCursor from "./components/Cursor";
 
 
 function App() {
   return (
     <>
       <UsuarioLogadoProvider>
+        <MosquitoCursor/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />

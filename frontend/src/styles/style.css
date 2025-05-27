@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: none;
 }
 
 /* =================== ESTILO GERAL =================== */
@@ -371,6 +372,7 @@ input[type="password"] {
 
 .authentication {
   background-color: #216396;
+  /* background: #1e3a8a; */
   width: 20rem;
   height: 25rem;
   display: flex;
@@ -381,6 +383,11 @@ input[type="password"] {
   color: #fff;
   text-align: center;
   border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .authentication>input {
@@ -399,6 +406,11 @@ input[type="password"] {
   width: 4rem;
   margin-bottom: 11.5px;
   background-color: #D9ED92;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border: none;
   cursor: pointer;
 }
@@ -1480,3 +1492,16 @@ body {
 .modal-close-btn:hover {
   background-color: #45a049;
 }
+
+
+
+/*============================CURSOR==============================*/
+
+body {
+  /* cursor: url('src\assets\denguecursor-removebg-preview.png'), auto; */
+  cursor: none;
+}
+
+
+
+
