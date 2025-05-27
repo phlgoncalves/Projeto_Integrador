@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { api } from "../api";
 
 type ContextType = {
@@ -12,9 +12,20 @@ type ContextType = {
 export const UsuarioLogadoContext = createContext<ContextType | null>(null);
 
 export const UsuarioLogadoProvider = ({ children }: { children: ReactNode }) => {
-  const [name, setName] = useState(localStorage.getItem('username') || '');
-  const [userId, setUserId] = useState(localStorage.getItem('userId') || '');
-  const [isLogged, setIsLogged] = useState(!!localStorage.getItem('userId'));
+  const [name, setName] = useState('');
+  const [userId, setUserId] = useState('');
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    const storedUsername = localStorage.getItem('username');
+
+    if (storedUserId && storedUsername) {
+      setUserId(storedUserId);
+      setName(storedUsername);
+      setIsLogged(true);
+    }
+  }, []);
   
 
   const login = async (email: string, senha: string) => {
@@ -42,6 +53,7 @@ export const UsuarioLogadoProvider = ({ children }: { children: ReactNode }) => 
     setIsLogged(false);
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
+    localStorage.removeItem('token');
   };
 
   return (

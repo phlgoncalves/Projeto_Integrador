@@ -714,6 +714,13 @@ input[type="password"] {
 }
 
 /* Botão */
+.btn-edit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
 .editar-btn {
   margin-top: 2rem;
   background-color: #22c55e;
