@@ -35,7 +35,11 @@ function Header() {
             </button>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login">
+            <button>
+            Login
+            </button>
+          </Link>
         )}
       </nav>
     </header>
