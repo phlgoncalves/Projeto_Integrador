@@ -7,7 +7,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none;
 }
 
 /* =================== ESTILO GERAL =================== */
@@ -367,7 +366,6 @@ input[type="password"] {
   justify-content: center;
   background: #e7f5ec;
   height: 75vh
-  
 }
 
 .authentication {
@@ -688,13 +686,12 @@ input[type="password"] {
   align-items: center;
   justify-content: center;
   min-height: 80vh;
-  background-color: rgba(0, 0, 0, 0.5);
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   padding: 2rem;
 }
 
 .perfil-card {
-  background: #ffffff;
+  background: #e7f5ec;
   padding: 2rem 3rem;
   border-radius: 12px;
   box-shadow: rgba(230, 225, 225, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -1201,7 +1198,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  height: 78vh;
+  height: auto;
 }
 
 
@@ -1493,14 +1490,6 @@ body {
   background-color: #45a049;
 }
 
-
-
-/*============================CURSOR==============================*/
-
-body {
-  /* cursor: url('src\assets\denguecursor-removebg-preview.png'), auto; */
-  cursor: none;
-}
 
 
 
