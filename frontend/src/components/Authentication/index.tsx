@@ -67,7 +67,7 @@ function Authentication() {
           }}
           disabled={loading}
         >
-          {loading ? 'Enrtando...' : 'Entrar'}
+          {loading ? 'Entrando...' : 'Entrar'}
           
         </button>
 
