@@ -70,27 +70,97 @@ const QuemSomos = () => {
               <h3>Wellington Medeiros</h3>
               <p>Desenvolvedor Full Stack</p>
               <p>Designer UX/UI</p>
+              <br />
+               <a
+                  href="https://www.linkedin.com/in/wellington-medeiros96/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-link"
+                >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  alt="LinkedIn"
+                  className="linkedin-icon"
+                />
+                </a>
             </div>
             <div className="card-membro">
               <img src="src\assets\pedro.jpg" alt="Pedro Gonçalves" />
               <h3>Pedro Gonçalves</h3>
               <p>Desenvolvedor Full Stack</p>
+              <br />
+              <br />
+               <a
+                  href="https://www.linkedin.com/in/pedrohlgoncalves/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-link"
+                >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  alt="LinkedIn"
+                  className="linkedin-icon"
+                />
+                </a>
             </div>
             <div className="card-membro">
               <img src="src\assets\silvao.jpg" alt="Silvio" />
               <h3>Silvio Rocha</h3>
               <p>Desenvolvedor Full Stack</p>
               <p>Gestor de Projetos</p>
+              <br />
+              <br />
+               <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-link"
+                >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  alt="LinkedIn"
+                  className="linkedin-icon"
+                />
+                </a>
             </div>
             <div className="card-membro">
               <img src="src\assets\bianca.jpeg" alt="Bianca Ferraz" />
               <h3>Bianca Ferraz</h3>
               <p>Desenvolvedor Full Stack</p>
+              <br />
+              <br />
+               <a
+                  href="https://www.linkedin.com/in/bianca-dos-santos-ferraz-63991b353/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-link"
+                >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  alt="LinkedIn"
+                  className="linkedin-icon"
+                />
+                </a>
             </div>
             <div className="card-membro">
               <img src="src\assets\Ellisonnnn.jpg" alt="Bianca Ferraz" />
               <h3>Ellison Erick</h3>
               <p>Desenvolvedor Full Stack</p>
+              <br />
+              <br />
+              <br />
+                <a
+                  href="https://www.linkedin.com/in/ellisonerick/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="linkedin-link"
+                >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                  alt="LinkedIn"
+                  className="linkedin-icon"
+                />
+                </a>
             </div>
           </div>
         </div>

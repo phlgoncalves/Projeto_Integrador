@@ -959,6 +959,35 @@ input[type="password"] {
   font-weight: 400;
 }
 
+/* LinkedIn Quem Somos */
+
+.linkedin-link {
+  display: inline-block;
+  margin: 10px;
+}
+
+.linkedin-icon {
+  width: 40px !important;
+  height: 40px !important;
+  transition: transform 0.2s !important;
+}
+
+.linkedin-icon:hover {
+  transform: scale(1.1) !important;
+}
+
+
+/* .linkedin-icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s;
+}
+
+.linkedin-icon:hover {
+  transform: scale(1.1);
+} */
+
+
 /* === Cards dos membros === */
 .membros-container {
   width: 100%;
