@@ -9,6 +9,13 @@ import { Typewriter } from 'react-simple-typewriter';
 import Popups from '../components/PopUp';
 import ImpactoDengue from '../components/ImpactoDengue';
 import CombateDengue from '../components/CombateDengue';
+import bannerDengue from '../assets/Banner_Blog_dengue.png'
+import cardCoceira from '../assets/coceira.png'
+import cardIconeDengue from '../assets/icone-dengue.png'
+import cardAgua from '../assets/agua.png'
+import cardMedicamento from '../assets/medicamento.png'
+
+
 
 Modal.setAppElement('#root');
 
@@ -74,25 +81,25 @@ const Home: React.FC = () => {
                     <div className="container-cards">
                         <Card
                             titulo="SINTOMAS"
-                            img="src/assets/coceira.png"
+                            img={cardCoceira}
                             imgAlt="dengue"
                             onClick={() => openModal("SINTOMAS", "A dengue geralmente causa febre alta, dores intensas no corpo (principalmente nas articulações e músculos), dor de cabeça forte, dor atrás dos olhos, náuseas, cansaço excessivo e erupções cutâneas.")}
                         />
                         <Card
                             titulo="TRANSMISSÃO"
-                            img="src/assets/icone-dengue.png"
+                            img={cardIconeDengue}
                             imgAlt="dengue"
                             onClick={() => openModal("TRANSMISSÃO", "A dengue é transmitida pela picada do mosquito Aedes aegypti infectado, que costuma se alimentar durante o dia, especialmente nas primeiras horas da manhã e ao entardecer.")}
                         />
                         <Card
                             titulo="PREVENÇÃO"
-                            img="src/assets/agua.png"
+                            img={cardAgua}
                             imgAlt="dengue"
                             onClick={() => openModal("PREVENÇÃO", "A principal forma de prevenção é evitar o acúmulo de água parada, onde o mosquito pode depositar seus ovos. Isso inclui eliminar pneus, garrafas, potes e caixas d'água sem tampa.")}
                         />
                         <Card
                             titulo="TRATAMENTO"
-                            img="src/assets/medicamento.png"
+                            img={cardMedicamento}
                             imgAlt="dengue"
                             onClick={() => openModal("TRATAMENTO", "Não há tratamento específico para a dengue. O tratamento é focado em aliviar os sintomas, como o uso de analgésicos e hidratação adequada. Em casos graves, a pessoa pode necessitar de internação hospitalar.")}
                         />
@@ -104,7 +111,7 @@ const Home: React.FC = () => {
                     </div>
 
                     <div className='container-IMGbaner'>
-                        <img className='baner-home' src="src\assets\Banner_Blog_dengue.png" />
+                        <img className='baner-home' src={bannerDengue} />
                     </div>
                     <br />
                     <ImpactoDengue/>

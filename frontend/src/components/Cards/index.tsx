@@ -13,7 +13,6 @@ function Card(props: propsCard) {
             <div className="cards" onClick={props.onClick}>
                 <h1>{props.titulo}</h1>
                 <br />
-                {/* {props.img} */}
                 <img className="img-cards" src={props.img} alt={props.imgAlt} />
 
                 <br /><br />
