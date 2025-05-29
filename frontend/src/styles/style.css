@@ -258,6 +258,10 @@ p {
   gap: 60px;
 }
 
+.container-btnDenunciaHome p{
+  font-size: 18px;
+}
+
 .btn-denuncia {
   background-color: red;
   color: white;
