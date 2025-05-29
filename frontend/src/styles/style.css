@@ -1,6 +1,7 @@
 /* =================== IMPORTAÇÃO DE FONTES =================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Cabin:ital,wght@0,400..700;1,400..700&family=Cairo:wght@200..1000&family=Calistoga&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nanum+Brush+Script&family=Raleway:ital,wght@0,100..900;1,100..900&family=Road+Rage&family=Sedan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 /* =================== RESET =================== */
 * {
@@ -727,7 +728,7 @@ input[type="password"] {
 }
 
 /* Botão */
-.btn-edit{
+.btn-edit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -891,8 +892,6 @@ input[type="password"] {
 
 
 
-/* Fonte moderna */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 .quem-somos {
   display: flex;
@@ -909,6 +908,7 @@ input[type="password"] {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -962,6 +962,35 @@ input[type="password"] {
   margin-bottom: 20px;
   font-weight: 400;
 }
+
+/* LinkedIn Quem Somos */
+
+.linkedin-link {
+  display: inline-block;
+  margin: 10px;
+}
+
+.linkedin-icon {
+  width: 40px !important;
+  height: 40px !important;
+  transition: transform 0.2s !important;
+}
+
+.linkedin-icon:hover {
+  transform: scale(1.1) !important;
+}
+
+
+/* .linkedin-icon {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.2s;
+}
+
+.linkedin-icon:hover {
+  transform: scale(1.1);
+} */
+
 
 /* === Cards dos membros === */
 .membros-container {
@@ -1493,8 +1522,3 @@ body {
 .modal-close-btn:hover {
   background-color: #45a049;
 }
-
-
-
-
-

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { api } from "../../api";
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
   const [nome, setNome] = useState("");
@@ -18,6 +19,9 @@ function RegistrationForm() {
   const [error, setError] = useState("");
   const [senhaError, setSenhaError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const navigate = useNavigate();
 
   // Função para formatar o CPF
   const formatarCPF = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -75,10 +79,6 @@ function RegistrationForm() {
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  };
-
-  const validatePassword = (senha: string, confirSenha: string): boolean => {
-    return senha === confirSenha;
   };
 
   const checkCEP = (e: { target: { value: string } }) => {
@@ -150,7 +150,7 @@ function RegistrationForm() {
 
       alert("Cadastro realizado com sucesso!");
       
-      window.location.href = "/login";
+      navigate("/login");
     } catch (error) {
       console.error("Erro no cadastro:", error);
       if (error instanceof Error) {
