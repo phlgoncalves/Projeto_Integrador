@@ -15,6 +15,9 @@ export const databaseProviders = [
             __dirname + '/../**/*.entity{.ts,.js}',
         ],
         synchronize: false,
+        extra: {
+          connectTimeout: 30000, // 30 segundos
+        },
       });
       
       return dataSource.initialize();
