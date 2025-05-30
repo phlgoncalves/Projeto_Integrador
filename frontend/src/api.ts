@@ -13,7 +13,7 @@ export const api = {
         TELEFONE: string,
         SENHA: string
     ) => {
-        const response = await fetch('https://dengueoff.onrender.com/usuarios', {
+        const response = await fetch('http://localhost:3000/usuarios', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -43,7 +43,7 @@ export const api = {
     },
 
     CarregarTodosUsuarios: async () => {
-        const response = await fetch('https://dengueoff.onrender.com/usuarios');
+        const response = await fetch('http://localhost:3000/usuarios');
         const data = await response.json();
 
         const usuarios = data.map((u: any) => ({
@@ -65,7 +65,7 @@ export const api = {
 
     CarregarUsuarioPorId: async (userId: string) => {
         const token = localStorage.getItem('token');
-        const response = await fetch(`https://dengueoff.onrender.com/usuarios/ID/${userId}`, {
+        const response = await fetch(`http://localhost:3000/usuarios/ID/${userId}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -101,7 +101,7 @@ export const api = {
         cidade: string,
         celular: string
     ) => {
-        const response = await fetch(`https://dengueoff.onrender.com/usuarios/${userId}`, {
+        const response = await fetch(`http://localhost:3000/usuarios/${userId}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -130,7 +130,7 @@ export const api = {
     },
 
     Logar: async (EMAIL: string, SENHA: string) => {
-        const response = await fetch('https://dengueoff.onrender.com/usuarios/login', {
+        const response = await fetch('http://localhost:3000/usuarios/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ EMAIL, SENHA })
@@ -152,7 +152,7 @@ export const api = {
         anonimato: boolean,
         usuarioId: string
     ) => {
-        const response = await fetch('https://dengueoff.onrender.com/denuncias', {
+        const response = await fetch('http://localhost:3000/denuncias', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -180,7 +180,7 @@ export const api = {
     },
 
     CarregarTodasDenuncias: async () => {
-        const response = await fetch('https://dengueoff.onrender.com/denuncias');
+        const response = await fetch('http://localhost:3000/denuncias');
         const data = await response.json();
 
         // Mapeia cada item para desserializar FOTOS e organizar campos
@@ -200,12 +200,12 @@ export const api = {
     },
 
     CarregarDenunciaUnica: async (param: string) => {
-        const response = await fetch(`https://dengueoff.onrender.com/denuncias/${param}`);
+        const response = await fetch(`http://localhost:3000/denuncias/${param}`);
         return await response.json();
     },
 
     DeletarDenunciaUnica: async (param: string) => {
-        const response = await fetch(`https://dengueoff.onrender.com/denuncias/${param}`, {
+        const response = await fetch(`http://localhost:3000/denuncias/${param}`, {
             method: 'DELETE',
         });
         return await response.json();
