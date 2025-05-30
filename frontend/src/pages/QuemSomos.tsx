@@ -1,7 +1,7 @@
 import { AiOutlineLinkedin } from "react-icons/ai"; 
 
 import "../styles/style.css";
-import equipeImg from "../assets/equipe.jpg";
+import equipeImg from "../assets/Mídia.jpg";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import cardTom from "../assets/tom.jpg";
