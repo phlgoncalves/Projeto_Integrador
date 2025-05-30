@@ -1,3 +1,4 @@
+import { AiOutlineLinkedin } from "react-icons/ai"; 
 
 import "../styles/style.css";
 import equipeImg from "../assets/equipe.jpg";
@@ -39,7 +40,7 @@ const QuemSomos = () => {
               <img src={cardTom} alt="Wellington Medeiros" />
               <h3>Wellington Medeiros</h3>
               <p>Desenvolvedor Full Stack</p>
-              <p>Designer UX/UI</p>
+              <br />
               <br />
                <a
                   href="https://www.linkedin.com/in/wellington-medeiros96/"
@@ -47,12 +48,9 @@ const QuemSomos = () => {
                   rel="noopener noreferrer"
                   className="linkedin-link"
                 >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                  alt="LinkedIn"
-                  className="linkedin-icon"
-                />
+                  <AiOutlineLinkedin />          
                 </a>
+
             </div>
             <div className="card-membro">
               <img src={cardPedro} alt="Pedro Gonçalves" />
@@ -66,18 +64,14 @@ const QuemSomos = () => {
                   rel="noopener noreferrer"
                   className="linkedin-link"
                 >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                  alt="LinkedIn"
-                  className="linkedin-icon"
-                />
+                <AiOutlineLinkedin /> 
                 </a>
             </div>
             <div className="card-membro">
               <img src={cardSilvao} alt="Silvio" />
               <h3>Silvio Rocha</h3>
               <p>Desenvolvedor Full Stack</p>
-              <p>Gestor de Projetos</p>
+              <p>CEO</p>
               <br />
               <br />
                <a
@@ -86,11 +80,7 @@ const QuemSomos = () => {
                   rel="noopener noreferrer"
                   className="linkedin-link"
                 >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                  alt="LinkedIn"
-                  className="linkedin-icon"
-                />
+                <AiOutlineLinkedin /> 
                 </a>
             </div>
             <div className="card-membro">
@@ -105,11 +95,7 @@ const QuemSomos = () => {
                   rel="noopener noreferrer"
                   className="linkedin-link"
                 >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                  alt="LinkedIn"
-                  className="linkedin-icon"
-                />
+                <AiOutlineLinkedin /> 
                 </a>
             </div>
             <div className="card-membro">
@@ -125,11 +111,7 @@ const QuemSomos = () => {
                   rel="noopener noreferrer"
                   className="linkedin-link"
                 >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                  alt="LinkedIn"
-                  className="linkedin-icon"
-                />
+                <AiOutlineLinkedin /> 
                 </a>
             </div>
           </div>

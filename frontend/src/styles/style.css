@@ -259,6 +259,10 @@ p {
   gap: 60px;
 }
 
+.container-btnDenunciaHome p{
+  font-size: 18px;
+}
+
 .btn-denuncia {
   background-color: red;
   color: white;
@@ -974,6 +978,11 @@ input[type="password"] {
 
 .linkedin-icon:hover {
   transform: scale(1.1) !important;
+}
+
+svg{
+  width: 30px;
+  height: 35px;
 }
 
 
