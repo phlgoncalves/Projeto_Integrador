@@ -16,7 +16,7 @@ export const databaseProviders = [
         ],
         synchronize: false,
         extra: {
-          connectTimeout: 300000, // 30 segundos
+          connectTimeout: 30000, // 30 segundos
         },
       });
       
