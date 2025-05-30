@@ -980,6 +980,11 @@ input[type="password"] {
   transform: scale(1.1) !important;
 }
 
+svg{
+  width: 30px;
+  height: 35px;
+}
+
 
 /* .linkedin-icon {
   width: 32px;
